@@ -233,7 +233,7 @@ button {
 }
 
 /* total cart */
-.total {
+.totals {
   max-width: 1280px;
   height: 150px;
   background: #f2f2f2;
@@ -245,16 +245,16 @@ button {
   place-items: center;
 }
 
-.total p,
-.total div,
-.total img {
+.totals p,
+.totals div,
+.totals img {
   background: #f2f2f2;
 }
 
-.total .total_price,
-.total .sale,
-.total .delivery,
-.total .payment {
+.totals .total_price,
+.totals .sale,
+.totals .delivery,
+.totals .payment {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -844,7 +844,7 @@ button {
   color: #19ce60;
 }
 
-.btn .btn_buy {
+.btns .btn_buy {
   width: 416px;
   height: 60px;
   border-radius: 5px;
@@ -858,13 +858,13 @@ button {
   margin-right: 44px;
 }
 
-.btn {
+.btns {
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.btn .btn_cart {
+.btns .btn_cart {
   width: 200px;
   height: 60px;
   border-radius: 5px;
@@ -887,7 +887,6 @@ button {
   }
 
   .product {
-    width: 100%;
     margin: 0;
     padding: 20px;
     padding-bottom: 0;
@@ -904,11 +903,11 @@ button {
   .btn {
     justify-content: center;
   }
-  .btn .btn_buy {
+  .btns .btn_buy {
     width: 70%;
   }
 
-  .btn .btn_cart {
+  .btns .btn_cart {
     width: 30%;
   }
 
@@ -923,8 +922,8 @@ button {
 
 @media (max-width: 380px) {
   .product_info .seller_store,
-  .btn .btn_cart,
-  .btn .btn_buy {
+  .btns .btn_cart,
+  .btns .btn_buy {
     font-size: 14px;
   }
 
@@ -1023,4 +1022,10 @@ button {
   .product_name span {
     font-size: 12px;
   }
+}
+
+.in_product {
+  width: 600px;
+  height: 600px;
+  margin-right: 50px;
 }

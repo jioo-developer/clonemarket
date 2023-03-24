@@ -1,15 +1,17 @@
 import React from "react";
+import { Link } from "react-router-dom";
 const Product = ({ products, convertPrice }) => {
-  // <Link to={`/product/${product.id}`}></Link>
   return (
     <main className="flex_wrap">
       {products.length
         ? products.map((product) => {
             return (
               <div className="product" key={product.id}>
-                <div className="product_image">
-                  <img src={product.image} alt="product" />
-                </div>
+                <Link to={`/product/${product.id}`}>
+                  <div className="product_image">
+                    <img src={product.image} alt="product" />
+                  </div>
+                </Link>
                 <div className="store">
                   <span>{product.provider}</span>
                 </div>
