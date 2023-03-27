@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import Product from "./Product";
 
-const Home = () => {
+const Home = ({ convertPrice }) => {
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -11,7 +11,7 @@ const Home = () => {
     });
   }, []);
 
-  return <Product products={products} />;
+  return <Product products={products} convertPrice={convertPrice} />;
 };
 
 export default Home;

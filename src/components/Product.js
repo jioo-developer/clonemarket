@@ -21,10 +21,7 @@ const Product = ({ products, convertPrice }) => {
                 </div>
 
                 <div className="product_price">
-                  <span className="price">
-                    {/* {convertPrice(product.price)} */}
-                    {product.price}
-                  </span>
+                  <span className="price">{convertPrice(product.price)}</span>
                   <span className="unit">원</span>
                 </div>
               </div>
