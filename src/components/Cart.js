@@ -81,7 +81,7 @@ const Cart = ({ cart, setCart, convertPrice }) => {
   return (
     <>
       <CartHeader AllChecked={AllChecked} isAllChecked={isAllChecked} />
-      {cart.length !== 0 ? (
+      {cart.length ? (
         cart.map((cart) => {
           return (
             <CartList
@@ -103,7 +103,7 @@ const Cart = ({ cart, setCart, convertPrice }) => {
         </div>
       )}
 
-      {cart.length !== 0 ? (
+      {cart.length ? (
         <>
           <CartCoupon coupon={coupon} />
           <TotalCart

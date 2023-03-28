@@ -3,8 +3,8 @@ import { useParams } from "react-router-dom";
 
 const Detail = ({ convertPrice, cart, products, setCart }) => {
   const { id } = useParams();
-  const [productItem, setProduct] = useState();
-  const [count, setCount] = useState();
+  const [productItem, setProduct] = useState([]);
+  const [count, setCount] = useState(1);
   const [convertNum, setConvertNum] = useState("");
 
   const handleQuantity = (type) => {

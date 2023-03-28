@@ -39,10 +39,9 @@ function App() {
         ></Route>
         <Route
           path="/cart"
-          element={Cart}
-          cart={cart}
-          setCart={setCart}
-          convertPrice={convertPrice}
+          element={
+            <Cart cart={cart} setCart={setCart} convertPrice={convertPrice} />
+          }
         ></Route>
       </Routes>
     </BrowserRouter>

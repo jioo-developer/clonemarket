@@ -1,7 +1,12 @@
 export const CartHeader = (props) => {
   return (
     <>
-      <header className="header">
+      <header
+        className="header"
+        style={{
+          maxWidth: 1280,
+        }}
+      >
         <h1>장바구니</h1>
       </header>
       <div className="cart_title_wrap">

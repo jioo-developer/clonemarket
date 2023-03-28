@@ -11,7 +11,7 @@ export const TotalCart = ({
   const [initialPrice, setInitial] = useState(0);
   const delivery = 3000;
   useEffect(() => {
-    if (buyitem.length !== 0) {
+    if (buyitem.length) {
       const sum = buyitem.map((item) => item[0].price * item[0].quantity);
       const reducer = (acc, cur) => acc + cur;
       const itemTotal = sum.reduce(reducer);
@@ -41,7 +41,7 @@ export const TotalCart = ({
     }
   }, [buyitem, cart, total, setTotal, randomNum]);
   return (
-    <div className="total">
+    <div className="totals">
       <div className="total_price">
         <p className="cart_product_total_price">총 상품금액</p>
         <p className="cart_product_price">{convertPrice(initialPrice)}</p>
