@@ -1,16 +1,7 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Product from "./Product";
 
-const Home = ({ convertPrice }) => {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    axios.get("/data/products.json").then((data) => {
-      setProducts(data.data.products);
-    });
-  }, []);
-
+const Home = ({ convertPrice, products }) => {
   return <Product products={products} convertPrice={convertPrice} />;
 };
 

@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
 
-const Detail = ({ convertPrice, cart }) => {
+const Detail = ({ convertPrice, cart, products, setCart }) => {
   const { id } = useParams();
   const [productItem, setProduct] = useState();
   const [count, setCount] = useState();
@@ -31,12 +30,12 @@ const Detail = ({ convertPrice, cart }) => {
 
   const handleCart = () => {
     const cartItem = {
-      id: producting.id,
-      image: producting.image,
-      name: producting.name,
+      id: productItem.id,
+      image: productItem.image,
+      name: productItem.name,
       quantity: count,
-      price: producting.price,
-      provider: producting.provider,
+      price: productItem.price,
+      provider: productItem.provider,
     };
     const found = cart.find((el) => el.id === cartItem.id);
     if (found !== undefined)
@@ -45,14 +44,10 @@ const Detail = ({ convertPrice, cart }) => {
   };
 
   useEffect(() => {
-    axios.get("/data/products.json").then((data) => {
-      const result = data.data.products.find((item) => {
-        return item.id === parseInt(id);
-      });
-      setConvertNum(result.price);
-      setProduct(result);
-    });
-  }, [id]);
+    const result = products.find((item) => item.id === parseInt(id));
+    setConvertNum(result.price);
+    setProduct(result);
+  }, [id, products]);
 
   return (
     productItem && (
