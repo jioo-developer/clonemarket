@@ -8,7 +8,7 @@ import CartCoupon from "./cart/CartCoupon.tsx";
 const Cart = ({ cart, convertPrice, cartConnect }) => {
   const [total, setTotal] = useState<number>(0);
   const [checkLists, setCheckLists] = useState<number[]>([]);
-  const [randomNum, setRandom] = useState<number>(0);
+  const [randomNum, setRandom] = useState(0);
 
   const handleQuantity = (id: number, quantity: number) => {
     const found = cart.filter((el) => el.id === id)[0];
@@ -49,23 +49,12 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
       setRandom(num);
       localStorage.setItem("couponNum", `${num}`);
       alert(`${num}% 할인 쿠폰이 발급되었습니다`);
-      return randomNum;
-    } else {
-      return randomNum;
     }
   };
 
   const totalConnect = (value: number) => {
     setTotal(value);
   };
-
-  useEffect(() => {
-    const loadCoupon = localStorage.getItem("couponNum");
-    const isCoupon: string = JSON.parse(loadCoupon || "{}");
-    if (isCoupon) {
-      setRandom(parseInt(isCoupon));
-    }
-  }, []);
 
   const buyitem: productType[] = checkLists.map((item) => {
     return cart.filter((el) => el.id === item);
@@ -74,6 +63,14 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
   const isAllChecked =
     cart.length === checkLists.length && checkLists.length !== 0;
   //전체를 체크 해야되니 :  장바구니에 저장된 데이터의 값과 체크된 갯수가 같으면서 체크리스트의 갯수가 0개가 아닐때
+
+  useEffect(() => {
+    const loadCoupon = localStorage.getItem("couponNum");
+    const isCoupon: string = JSON.parse(loadCoupon || "{}");
+    if (typeof isCoupon === "number") {
+      setRandom(parseInt(isCoupon));
+    }
+  }, []);
 
   return (
     <>
@@ -116,6 +113,11 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
           </div>
         </>
       ) : null}
+      <div className="result">
+        <button className="btn_buy" style={{ height: 80 }}>
+          구매하기
+        </button>
+      </div>
     </>
   );
 };

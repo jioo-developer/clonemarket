@@ -62,10 +62,7 @@ const TotalCart = ({
       </div>
       <div className="sale">
         <p className="cart_product_sale">상품 할인</p>
-        <p className="cart_product_sale_price">
-          {randomNum}
-          {randomNum <= 0 ? "" : "%"}
-        </p>
+        <p className="cart_product_sale_price">{randomNum}%</p>
       </div>
       <div className="pay_plus">
         <img src="/images/icon-plus-line.svg" alt="plus" />

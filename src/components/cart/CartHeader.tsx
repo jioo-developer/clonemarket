@@ -8,14 +8,14 @@ const CartHeader = ({
 }) => {
   return (
     <>
-      <header
+      <div
         className="header"
         style={{
           maxWidth: 1280,
         }}
       >
         <h1>장바구니</h1>
-      </header>
+      </div>
       <div className="cart_title_wrap">
         <div className="tab_title">
           <input

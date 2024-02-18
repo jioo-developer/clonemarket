@@ -27,10 +27,6 @@ function App() {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(cart);
-  }, [cart]);
-
   return (
     <>
       <Header cart={cart} />

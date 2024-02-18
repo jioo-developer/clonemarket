@@ -65,11 +65,9 @@ const CartList = ({
 
       <div className="cart_product_price">
         <p className="total_price"></p>
-        <button className="btn_submit">주문하기</button>
-      </div>
-
-      <div className="product_remove" onClick={() => handleRemove(item.id)}>
-        <img src="/images/icon-delete.svg" alt="delete" />
+        <button className="btn_cart" onClick={() => handleRemove(item.id)}>
+          빼기
+        </button>
       </div>
     </section>
   );

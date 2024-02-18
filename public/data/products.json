@@ -6,7 +6,8 @@
       "provider": "아이돈케어",
       "price": 17100,
       "image": "/images/image001.png",
-      "quantity": 0
+      "quantity": 0,
+      "quick": true
     },
     {
       "id": 2,
@@ -14,7 +15,8 @@
       "provider": "gorigory",
       "price": 3000,
       "image": "/images/image002.png",
-      "quantity": 0
+      "quantity": 0,
+      "quick": true
     },
     {
       "id": 3,
@@ -22,7 +24,8 @@
       "provider": "100-QM",
       "price": 7000,
       "image": "/images/image003.png",
-      "quantity": 0
+      "quantity": 0,
+      "quick": true
     },
     {
       "id": 4,
@@ -30,7 +33,8 @@
       "provider": "문구 판매소",
       "price": 1900,
       "image": "/images/image004.png",
-      "quantity": 0
+      "quantity": 0,
+      "quick": true
     },
     {
       "id": 5,
@@ -38,7 +42,8 @@
       "provider": "numpy",
       "price": 99000,
       "image": "/images/image005.png",
-      "quantity": 0
+      "quantity": 0,
+      "quick": false
     },
     {
       "id": 6,
@@ -46,7 +51,8 @@
       "provider": "보물보따리",
       "price": 69000,
       "image": "/images/image006.png",
-      "quantity": 0
+      "quantity": 0,
+      "quick": false
     },
     {
       "id": 7,
@@ -54,7 +60,8 @@
       "provider": "집",
       "price": 1000000,
       "image": "/images/image007.png",
-      "quantity": 0
+      "quantity": 0,
+      "quick": false
     },
     {
       "id": 8,
@@ -62,7 +69,8 @@
       "provider": "우당탕탕",
       "price": 5900,
       "image": "/images/image008.png",
-      "quantity": 0
+      "quantity": 0,
+      "quick": false
     }
   ]
 }

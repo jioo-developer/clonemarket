@@ -12,6 +12,7 @@ const Detail = ({ convertPrice, cart, products, cartConnect }: detailProps) => {
     price: 0,
     image: "",
     quantity: 0,
+    quick: false,
   };
 
   const handleQuantity = (type: string) => {
@@ -79,7 +80,24 @@ const Detail = ({ convertPrice, cart, products, cartConnect }: detailProps) => {
               </div>
 
               <div className="delivery">
-                <p>택배배송 / 무료배송</p>
+                <p
+                  style={
+                    item().quick
+                      ? { color: "cadetblue", fontWeight: 600 }
+                      : { color: "#333" }
+                  }
+                >
+                  택배배송 /
+                </p>
+                <p
+                  style={
+                    !item().quick
+                      ? { color: "cadetblue", fontWeight: 600 }
+                      : { color: "#333" }
+                  }
+                >
+                  &nbsp;빠른배송
+                </p>
               </div>
 
               <div className="line"></div>
@@ -123,9 +141,8 @@ const Detail = ({ convertPrice, cart, products, cartConnect }: detailProps) => {
               </div>
 
               <div className="btns">
-                <button className="btn_buy">바로 구매</button>
                 <button
-                  className="btn_cart"
+                  className="btn_buy"
                   onClick={() => {
                     handleCart(item().id);
                   }}
