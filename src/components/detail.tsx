@@ -103,22 +103,21 @@ const Detail = ({ convertPrice, cart, products, cartConnect }: detailProps) => {
               <div className="line"></div>
 
               <div className="amount">
+                <button onClick={() => handleQuantity("minus")}></button>
                 <img
                   className="minus"
                   src="/images/icon-minus-line.svg"
                   alt="minus"
-                  onClick={() => handleQuantity("minus")}
                 />
 
                 <div className="count">
                   <span>{count}</span>
                 </div>
-
+                <button onClick={() => handleQuantity("plus")}></button>
                 <img
                   className="plus"
                   src="/images/icon-plus-line.svg"
                   alt="plus"
-                  onClick={() => handleQuantity("plus")}
                 />
               </div>
 

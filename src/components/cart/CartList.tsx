@@ -41,26 +41,27 @@ const CartList = ({
       </div>
 
       <div className="cart_product_count">
-        <img
-          className="minus"
-          src="/images/icon-minus-line.svg"
-          alt="minus"
+        <button
           onClick={() => {
             if (item.quantity > 1) {
               handleQuantity(item.id, item.quantity - 1);
             }
           }}
-        />
+        >
+          <img
+            className="minus"
+            src="/images/icon-minus-line.svg"
+            alt="minus"
+          />
+        </button>
 
         <div className="count">
           <span>{item.quantity}</span>
         </div>
-        <img
-          className="plus"
-          src="/images/icon-plus-line.svg"
-          alt="plus"
-          onClick={() => handleQuantity(item.id, item.quantity + 1)}
-        />
+
+        <button onClick={() => handleQuantity(item.id, item.quantity + 1)}>
+          <img className="plus" src="/images/icon-plus-line.svg" alt="plus" />
+        </button>
       </div>
 
       <div className="cart_product_price">

@@ -6,8 +6,9 @@ type TotalCartProps = {
   cart: productType[];
   convertPrice: (price: number) => string;
   randomNum: number;
-  buyitem: productType[];
+  buyitem: () => productType[];
   totalConnect: (value: number) => void;
+  checkLists: number[];
 };
 
 const TotalCart = ({
@@ -17,14 +18,14 @@ const TotalCart = ({
   randomNum,
   buyitem,
   totalConnect,
+  checkLists,
 }: TotalCartProps) => {
   const [initialPrice, setInitial] = useState(0);
   const delivery = 3000;
   useEffect(() => {
-    if (buyitem.length) {
-      const sum = buyitem.map((item) => item[0].price * item[0].quantity);
+    if (buyitem().length > 0) {
+      const sum = buyitem().map((item) => item.price * item.quantity);
       const itemTotal = sum.reduce((acc, cur) => acc + cur);
-
       if (itemTotal <= 0) {
         totalConnect(0);
       } else {
@@ -50,7 +51,7 @@ const TotalCart = ({
       totalConnect(0);
       setInitial(0);
     }
-  }, [buyitem, cart, total, totalConnect, randomNum]);
+  }, [buyitem, checkLists, cart, total, totalConnect, randomNum]);
   return (
     <div className="totals">
       <div className="total_price">

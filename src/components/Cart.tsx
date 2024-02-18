@@ -27,7 +27,8 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
     if (checked) {
       setCheckLists([...checkLists, productId]);
     } else {
-      setCheckLists(checkLists.filter((item) => item !== productId));
+      const result = checkLists.filter((item) => item !== productId);
+      setCheckLists(result);
       //filter 안의 item parameter와 id가 같지 않은 것만 남긴다 = 같은 거 삭제
     }
   };
@@ -56,9 +57,18 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
     setTotal(value);
   };
 
-  const buyitem: productType[] = checkLists.map((item) => {
-    return cart.filter((el) => el.id === item);
-  });
+  function buyitem() {
+    if (cart.length > 0) {
+      const result = [].concat(
+        ...checkLists.map((item) => {
+          return cart.filter((el) => el.id === item);
+        })
+      );
+      return result;
+    } else {
+      return [];
+    }
+  }
 
   const isAllChecked =
     cart.length === checkLists.length && checkLists.length !== 0;
@@ -72,13 +82,28 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
     }
   }, []);
 
+  useEffect(() => {
+    if (cart.length > 0) {
+      const array: number[] = [];
+      cart.forEach((item) => {
+        array.push(item.id);
+      });
+      setCheckLists(array);
+    }
+  }, [cart]);
+
+  useEffect(() => {
+    buyitem();
+  }, [checkLists]);
+
   return (
     <>
       <CartHeader AllChecked={AllChecked} isAllChecked={isAllChecked} />
-      {cart.length ? (
+      {cart.length > 0 ? (
         cart.map((item: productType) => {
           return (
             <CartList
+              key={item.id}
               item={item}
               convertPrice={convertPrice}
               handleQuantity={handleQuantity}
@@ -105,12 +130,8 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
             convertPrice={convertPrice}
             randomNum={randomNum}
             buyitem={buyitem}
+            checkLists={checkLists}
           />
-          <div className="cart_couponWrap">
-            <p className="total_discount">
-              상품 할인에 배송비는 포함 되지 않습니다.
-            </p>
-          </div>
         </>
       ) : null}
       <div className="result">
