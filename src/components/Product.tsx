@@ -1,17 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
-const Product = ({ products, convertPrice }) => {
+import { useNavigate } from "react-router-dom";
+const Product = ({ products, convertPrice }: homeProps) => {
+  const navigate = useNavigate();
+  function detailDirect(id: number) {
+    navigate(`/product/${id}`, { state: { id: id } });
+  }
   return (
     <main className="flex_wrap">
       {products.length
         ? products.map((product) => {
             return (
-              <div className="product" key={product.id}>
-                <Link to={`/product/${product.id}`}>
-                  <div className="product_image">
-                    <img src={product.image} alt="product" />
-                  </div>
-                </Link>
+              <div
+                className="product"
+                key={product.id}
+                onClick={() => detailDirect(product.id)}
+              >
+                <div className="product_image">
+                  <img src={product.image} alt="product" />
+                </div>
                 <div className="store">
                   <span>{product.provider}</span>
                 </div>

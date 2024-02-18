@@ -1,6 +1,7 @@
+import React from "react";
 import { Link } from "react-router-dom";
 
-export const Header = ({ cart }) => {
+export const Header = ({ cart }: { cart: productType[] }) => {
   return (
     <header className="header">
       <div className="inner">

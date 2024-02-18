@@ -1,4 +1,11 @@
-export const CartHeader = (props) => {
+import React, { ChangeEvent } from "react";
+export const CartHeader = ({
+  isAllChecked,
+  AllChecked,
+}: {
+  isAllChecked: boolean;
+  AllChecked: (e: ChangeEvent) => void;
+}) => {
   return (
     <>
       <header
@@ -13,8 +20,8 @@ export const CartHeader = (props) => {
         <div className="tab_title">
           <input
             type="checkbox"
-            onChange={(e) => props.AllChecked(e.target.checked)}
-            checked={props.isAllChecked}
+            onChange={(e: ChangeEvent) => AllChecked(e)}
+            checked={isAllChecked}
           />
           <span>상품정보</span>
           <span>수량</span>

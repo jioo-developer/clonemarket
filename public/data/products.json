@@ -5,56 +5,64 @@
       "name": "마로네 노트북 파우치",
       "provider": "아이돈케어",
       "price": 17100,
-      "image": "/images/image001.png"
+      "image": "/images/image001.png",
+      "quantity": 0
     },
     {
       "id": 2,
       "name": "에어팟 키링",
       "provider": "gorigory",
       "price": 3000,
-      "image": "/images/image002.png"
+      "image": "/images/image002.png",
+      "quantity": 0
     },
     {
       "id": 3,
       "name": "폴리폴리 무릎 담요",
       "provider": "100-QM",
       "price": 7000,
-      "image": "/images/image003.png"
+      "image": "/images/image003.png",
+      "quantity": 0
     },
     {
       "id": 4,
       "name": "아이폰 스티커 팩",
       "provider": "문구 판매소",
       "price": 1900,
-      "image": "/images/image004.png"
+      "image": "/images/image004.png",
+      "quantity": 0
     },
     {
       "id": 5,
       "name": "개발자 키보드",
       "provider": "numpy",
       "price": 99000,
-      "image": "/images/image005.png"
+      "image": "/images/image005.png",
+      "quantity": 0
     },
     {
       "id": 6,
       "name": "개발자 커스텀 케이블",
       "provider": "보물보따리",
       "price": 69000,
-      "image": "/images/image006.png"
+      "image": "/images/image006.png",
+      "quantity": 0
     },
     {
       "id": 7,
       "name": "문 긁는 고양이",
       "provider": "집",
       "price": 1000000,
-      "image": "/images/image007.png"
+      "image": "/images/image007.png",
+      "quantity": 0
     },
     {
       "id": 8,
       "name": "우당탕탕 인테리어 책",
       "provider": "우당탕탕",
       "price": 5900,
-      "image": "/images/image008.png"
+      "image": "/images/image008.png",
+      "quantity": 0
     }
   ]
 }

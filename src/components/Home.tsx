@@ -1,7 +1,7 @@
 import React from "react";
-import Product from "./Product";
+import Product from "./Product.tsx";
 
-const Home = ({ convertPrice, products }) => {
+const Home = ({ convertPrice, products }: homeProps) => {
   return <Product products={products} convertPrice={convertPrice} />;
 };
 

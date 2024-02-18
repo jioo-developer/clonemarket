@@ -1,13 +1,14 @@
+import React, { ChangeEvent } from "react";
 import { useEffect, useState } from "react";
-import { CartHeader } from "./cart/CartHeader";
-import CartList from "./cart/CartList";
-import { TotalCart } from "./cart/TotalCart";
-import CartCoupon from "./cart/CartCoupon";
+import { CartHeader } from "./cart/CartHeader.tsx";
+import CartList from "./cart/CartList.tsx";
+import { TotalCart } from "./cart/TotalCart.tsx";
+import CartCoupon from "./cart/CartCoupon.tsx";
 
-const Cart = ({ cart, setCart, convertPrice }) => {
-  const [total, setTotal] = useState(0);
-  const [checkLists, setCheckLists] = useState([]);
-  const [randomNum, setRandom] = useState(0);
+const Cart = ({ cart, convertPrice, cartConnect }) => {
+  const [total, setTotal] = useState<number>(0);
+  const [checkLists, setCheckLists] = useState<number[]>([]);
+  const [randomNum, setRandom] = useState<number>(0);
   const handleQuantity = (type, id, quantity) => {
     const found = cart.filter((el) => el.id === id)[0];
     const idx = cart.indexOf(found);
@@ -20,15 +21,15 @@ const Cart = ({ cart, setCart, convertPrice }) => {
       provider: found.provider,
     };
     if (type === "plus") {
-      setCart([...cart.slice(0, idx), cartItem, ...cart.slice(idx + 1)]);
+      cartConnect([...cart.slice(0, idx), cartItem, ...cart.slice(idx + 1)]);
     } else {
       if (quantity === 0) return;
-      setCart([...cart.slice(0, idx), cartItem, ...cart.slice(idx + 1)]);
+      cartConnect([...cart.slice(0, idx), cartItem, ...cart.slice(idx + 1)]);
     }
   };
 
   const handleRemove = (id) => {
-    setCart(cart.filter((cart) => cart.id !== id));
+    cartConnect(cart.filter((cart) => cart.id !== id));
   };
 
   const handlerCheckList = (checked, id) => {
@@ -40,9 +41,10 @@ const Cart = ({ cart, setCart, convertPrice }) => {
     }
   };
 
-  const AllChecked = (checked) => {
-    if (checked) {
-      const clearItem = [];
+  const AllChecked = (e: ChangeEvent) => {
+    const target = e.target as HTMLInputElement;
+    if (target.checked) {
+      const clearItem: number[] = [];
       cart.forEach((element) => {
         clearItem.push(element.id);
         setCheckLists([...clearItem]);
@@ -56,17 +58,19 @@ const Cart = ({ cart, setCart, convertPrice }) => {
     if (randomNum === 0) {
       const num = Math.floor(Math.random() * (10 - 5) + 5);
       setRandom(num);
-      localStorage.setItem("couponNum", num);
+      localStorage.setItem("couponNum", `${num}`);
       alert(`${num}% 할인 쿠폰이 발급되었습니다`);
+      return randomNum;
     } else {
       return randomNum;
     }
   };
 
   useEffect(() => {
-    const isCoupon = localStorage.getItem("couponNum");
-    if (isCoupon !== null) {
-      setRandom(isCoupon);
+    const loadCoupon = localStorage.getItem("couponNum");
+    const isCoupon: string = JSON.parse(loadCoupon || "{}");
+    if (isCoupon) {
+      setRandom(parseInt(isCoupon));
     }
   }, []);
 
@@ -87,7 +91,6 @@ const Cart = ({ cart, setCart, convertPrice }) => {
             <CartList
               key={`key-${cart.id}`}
               cart={cart}
-              setCart={setCart}
               convertPrice={convertPrice}
               handleQuantity={handleQuantity}
               handlerCheckList={handlerCheckList}

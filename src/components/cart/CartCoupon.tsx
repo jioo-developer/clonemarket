@@ -1,5 +1,5 @@
 import React from "react";
-const cartCoupon = ({ coupon }) => {
+const cartCoupon = ({ coupon }: { coupon: () => number }) => {
   return (
     <div className="cart_couponWrap">
       <div className="couponBtn" onClick={coupon}>

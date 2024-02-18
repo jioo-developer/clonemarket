@@ -1,16 +1,24 @@
 import "./App.css";
-import Home from "./components/Home";
-import Detail from "./components/detail";
-import Cart from "./components/Cart";
-import { Header } from "./components/header";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import React from "react";
+import Home from "./components/Home.tsx";
+import Detail from "./components/detail.tsx";
+import Cart from "./components/Cart.tsx";
+import { Header } from "./components/header.tsx";
+import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
+
 function App() {
-  const [products, setProducts] = useState([]);
-  const [cart, setCart] = useState([]);
-  const convertPrice = (price) => {
+  const [products, setProducts] = useState<productType[]>([]);
+  const [cart, setCart] = useState<productType[]>([]);
+
+  // 3자리 마다 콤마 찍는 함수
+  const convertPrice = (price: number): string => {
     return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  const cartConnect = (value: productType[]) => {
+    setCart(value);
   };
 
   useEffect(() => {
@@ -18,8 +26,11 @@ function App() {
       setProducts(data.data.products);
     });
   }, []);
+  useEffect(() => {
+    console.log(products);
+  }, [products]);
   return (
-    <BrowserRouter>
+    <>
       <Header cart={cart} />
       <Routes>
         <Route
@@ -32,7 +43,7 @@ function App() {
             <Detail
               convertPrice={convertPrice}
               cart={cart}
-              setCart={setCart}
+              cartConnect={cartConnect}
               products={products}
             />
           }
@@ -40,11 +51,16 @@ function App() {
         <Route
           path="/cart"
           element={
-            <Cart cart={cart} setCart={setCart} convertPrice={convertPrice} />
+            <Cart
+              cart={cart}
+              setCart={setCart}
+              convertPrice={convertPrice}
+              cartConnect={cartConnect}
+            />
           }
         ></Route>
       </Routes>
-    </BrowserRouter>
+    </>
   );
 }
 
