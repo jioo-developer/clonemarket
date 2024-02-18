@@ -50,6 +50,8 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
       setRandom(num);
       localStorage.setItem("couponNum", `${num}`);
       alert(`${num}% 할인 쿠폰이 발급되었습니다`);
+    } else {
+      alert("이미 발급된 쿠폰이 있습니다.");
     }
   };
 
