@@ -16,6 +16,7 @@ const Detail = ({ convertPrice, cart, products, cartConnect }: detailProps) => {
   };
 
   const handleQuantity = (type: string) => {
+    console.log(type);
     if (type === "plus") {
       setCount(count + 1);
     } else {
@@ -103,22 +104,23 @@ const Detail = ({ convertPrice, cart, products, cartConnect }: detailProps) => {
               <div className="line"></div>
 
               <div className="amount">
-                <button onClick={() => handleQuantity("minus")}></button>
-                <img
-                  className="minus"
-                  src="/images/icon-minus-line.svg"
-                  alt="minus"
-                />
-
+                <button onClick={() => handleQuantity("minus")}>
+                  <img
+                    className="minus"
+                    src="/images/icon-minus-line.svg"
+                    alt="minus"
+                  />
+                </button>
                 <div className="count">
                   <span>{count}</span>
                 </div>
-                <button onClick={() => handleQuantity("plus")}></button>
-                <img
-                  className="plus"
-                  src="/images/icon-plus-line.svg"
-                  alt="plus"
-                />
+                <button onClick={() => handleQuantity("plus")}>
+                  <img
+                    className="plus"
+                    src="/images/icon-plus-line.svg"
+                    alt="plus"
+                  />
+                </button>
               </div>
 
               <div className="line"></div>
