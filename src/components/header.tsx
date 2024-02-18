@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const Header = ({ cart }: { cart: productType[] }) => {
+const Header = ({ cart }: { cart: productType[] }) => {
   return (
     <header className="header">
       <div className="inner">
@@ -34,3 +34,5 @@ export const Header = ({ cart }: { cart: productType[] }) => {
     </header>
   );
 };
+
+export default Header;

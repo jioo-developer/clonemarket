@@ -1,45 +1,56 @@
 import React from "react";
 import { useEffect, useState } from "react";
-export const TotalCart = ({
+
+type TotalCartProps = {
+  total: number;
+  cart: productType[];
+  convertPrice: (price: number) => string;
+  randomNum: number;
+  buyitem: productType[];
+  totalConnect: (value: number) => void;
+};
+
+const TotalCart = ({
   total,
-  setTotal,
   cart,
   convertPrice,
   randomNum,
   buyitem,
-}) => {
+  totalConnect,
+}: TotalCartProps) => {
   const [initialPrice, setInitial] = useState(0);
   const delivery = 3000;
   useEffect(() => {
     if (buyitem.length) {
       const sum = buyitem.map((item) => item[0].price * item[0].quantity);
-      const reducer = (acc, cur) => acc + cur;
-      const itemTotal = sum.reduce(reducer);
+      const itemTotal = sum.reduce((acc, cur) => acc + cur);
+
       if (itemTotal <= 0) {
-        setTotal(0);
+        totalConnect(0);
       } else {
         setInitial(itemTotal);
+
         if (randomNum > 0) {
           const discount =
             itemTotal - Math.round(itemTotal * (randomNum / 100));
           if (discount > delivery * 10) {
-            setTotal(discount);
+            totalConnect(discount);
           } else {
-            setTotal(discount + delivery);
+            totalConnect(discount + delivery);
           }
         } else {
           if (itemTotal > delivery * 10) {
-            setTotal(itemTotal);
+            totalConnect(itemTotal);
           } else {
-            setTotal(itemTotal + delivery);
+            totalConnect(itemTotal + delivery);
           }
         }
       }
     } else {
-      setTotal(0);
+      totalConnect(0);
       setInitial(0);
     }
-  }, [buyitem, cart, total, setTotal, randomNum]);
+  }, [buyitem, cart, total, totalConnect, randomNum]);
   return (
     <div className="totals">
       <div className="total_price">
@@ -73,3 +84,5 @@ export const TotalCart = ({
     </div>
   );
 };
+
+export default TotalCart;

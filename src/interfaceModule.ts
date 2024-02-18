@@ -1,13 +1,18 @@
-type productType = {
+interface productType {
   id: number;
   name: string;
   provider: string;
   price: number;
   image: string;
   quantity: number;
-};
+}
 
-type homeProps = {
+interface homeProps {
   convertPrice: (price: number) => string;
   products: productType[];
-};
+}
+
+interface detailProps extends homeProps {
+  cart: productType[];
+  cartConnect: (params: productType[]) => void;
+}

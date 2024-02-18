@@ -1,31 +1,41 @@
 import React from "react";
+
+type cartListProps = {
+  item: productType;
+  convertPrice: (price: number) => string;
+  handleQuantity: (id: number, quantity: number) => void;
+  handleRemove: (productId: number) => void;
+  handlerCheckList: (checked: boolean, productId: number) => void;
+  checkLists: number[];
+};
+
 const CartList = ({
-  cart,
+  item,
   convertPrice,
   handleQuantity,
   handleRemove,
   handlerCheckList,
   checkLists,
-}) => {
+}: cartListProps) => {
   return (
     <section className="cart_product_list">
       <input
         type="checkbox"
-        id={cart.id}
+        id={`${item.id}`}
         onChange={(e) => {
           handlerCheckList(e.currentTarget.checked, parseInt(e.target.id));
         }}
-        checked={checkLists.includes(cart.id) ? true : false}
+        checked={checkLists.includes(item.id) ? true : false}
       />
       <div className="cart_product_wrap">
         <div className="cart_product_image">
-          <img src={cart.image} alt="product-img" />
+          <img src={item.image} alt="product-img" />
         </div>
 
         <div className="cart_product_info">
-          <p className="seller_store">{cart.provider}</p>
-          <p className="product_name">{cart.name}</p>
-          <p className="price">{convertPrice(cart.price)}원</p>
+          <p className="seller_store">{item.provider}</p>
+          <p className="product_name">{item.name}</p>
+          <p className="price">{convertPrice(item.price)}원</p>
           <p className="delivery">택배배송</p>
         </div>
       </div>
@@ -36,18 +46,20 @@ const CartList = ({
           src="/images/icon-minus-line.svg"
           alt="minus"
           onClick={() => {
-            handleQuantity("minus", cart.id, cart.quantity - 1);
+            if (item.quantity > 1) {
+              handleQuantity(item.id, item.quantity - 1);
+            }
           }}
         />
 
         <div className="count">
-          <span>{cart.quantity}</span>
+          <span>{item.quantity}</span>
         </div>
         <img
           className="plus"
           src="/images/icon-plus-line.svg"
           alt="plus"
-          onClick={() => handleQuantity("plus", cart.id, cart.quantity + 1)}
+          onClick={() => handleQuantity(item.id, item.quantity + 1)}
         />
       </div>
 
@@ -56,7 +68,7 @@ const CartList = ({
         <button className="btn_submit">주문하기</button>
       </div>
 
-      <div className="product_remove" onClick={() => handleRemove(cart.id)}>
+      <div className="product_remove" onClick={() => handleRemove(item.id)}>
         <img src="/images/icon-delete.svg" alt="delete" />
       </div>
     </section>

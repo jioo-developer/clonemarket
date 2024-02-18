@@ -3,7 +3,7 @@ import React from "react";
 import Home from "./components/Home.tsx";
 import Detail from "./components/detail.tsx";
 import Cart from "./components/Cart.tsx";
-import { Header } from "./components/header.tsx";
+import Header from "./components/header.tsx";
 import { Route, Routes } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -26,9 +26,11 @@ function App() {
       setProducts(data.data.products);
     });
   }, []);
+
   useEffect(() => {
-    console.log(products);
-  }, [products]);
+    console.log(cart);
+  }, [cart]);
+
   return (
     <>
       <Header cart={cart} />
@@ -53,7 +55,6 @@ function App() {
           element={
             <Cart
               cart={cart}
-              setCart={setCart}
               convertPrice={convertPrice}
               cartConnect={cartConnect}
             />

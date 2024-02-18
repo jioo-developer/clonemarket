@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from "react";
-export const CartHeader = ({
+const CartHeader = ({
   isAllChecked,
   AllChecked,
 }: {
@@ -33,3 +33,5 @@ export const CartHeader = ({
     </>
   );
 };
+
+export default CartHeader;

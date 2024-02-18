@@ -1,42 +1,33 @@
 import React, { ChangeEvent } from "react";
 import { useEffect, useState } from "react";
-import { CartHeader } from "./cart/CartHeader.tsx";
+import CartHeader from "./cart/CartHeader.tsx";
 import CartList from "./cart/CartList.tsx";
-import { TotalCart } from "./cart/TotalCart.tsx";
+import TotalCart from "./cart/TotalCart.tsx";
 import CartCoupon from "./cart/CartCoupon.tsx";
 
 const Cart = ({ cart, convertPrice, cartConnect }) => {
   const [total, setTotal] = useState<number>(0);
   const [checkLists, setCheckLists] = useState<number[]>([]);
   const [randomNum, setRandom] = useState<number>(0);
-  const handleQuantity = (type, id, quantity) => {
+
+  const handleQuantity = (id: number, quantity: number) => {
     const found = cart.filter((el) => el.id === id)[0];
     const idx = cart.indexOf(found);
-    const cartItem = {
-      id: found.id,
-      image: found.image,
-      name: found.name,
-      quantity: quantity,
-      price: found.price,
-      provider: found.provider,
-    };
-    if (type === "plus") {
-      cartConnect([...cart.slice(0, idx), cartItem, ...cart.slice(idx + 1)]);
-    } else {
-      if (quantity === 0) return;
-      cartConnect([...cart.slice(0, idx), cartItem, ...cart.slice(idx + 1)]);
-    }
+    const newNum = found;
+    newNum.quantity = quantity;
+    const splice = cart.splice(idx, 1, newNum);
+    cartConnect(splice);
   };
 
-  const handleRemove = (id) => {
-    cartConnect(cart.filter((cart) => cart.id !== id));
+  const handleRemove = (productId: number) => {
+    cartConnect(cart.filter((cart) => cart.id !== productId));
   };
 
-  const handlerCheckList = (checked, id) => {
+  const handlerCheckList = (checked: boolean, productId: number) => {
     if (checked) {
-      setCheckLists([...checkLists, id]);
+      setCheckLists([...checkLists, productId]);
     } else {
-      setCheckLists(checkLists.filter((item) => item !== id));
+      setCheckLists(checkLists.filter((item) => item !== productId));
       //filter 안의 item parameter와 id가 같지 않은 것만 남긴다 = 같은 거 삭제
     }
   };
@@ -45,10 +36,8 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
     const target = e.target as HTMLInputElement;
     if (target.checked) {
       const clearItem: number[] = [];
-      cart.forEach((element) => {
-        clearItem.push(element.id);
-        setCheckLists([...clearItem]);
-      });
+      cart.forEach((element) => clearItem.push(element.id));
+      setCheckLists([...clearItem]);
     } else {
       setCheckLists([]);
     }
@@ -66,6 +55,10 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
     }
   };
 
+  const totalConnect = (value: number) => {
+    setTotal(value);
+  };
+
   useEffect(() => {
     const loadCoupon = localStorage.getItem("couponNum");
     const isCoupon: string = JSON.parse(loadCoupon || "{}");
@@ -74,7 +67,7 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
     }
   }, []);
 
-  const buyitem = checkLists.map((item) => {
+  const buyitem: productType[] = checkLists.map((item) => {
     return cart.filter((el) => el.id === item);
   });
 
@@ -86,11 +79,10 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
     <>
       <CartHeader AllChecked={AllChecked} isAllChecked={isAllChecked} />
       {cart.length ? (
-        cart.map((cart) => {
+        cart.map((item: productType) => {
           return (
             <CartList
-              key={`key-${cart.id}`}
-              cart={cart}
+              item={item}
               convertPrice={convertPrice}
               handleQuantity={handleQuantity}
               handlerCheckList={handlerCheckList}
@@ -112,7 +104,7 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
           <TotalCart
             cart={cart}
             total={total}
-            setTotal={setTotal}
+            totalConnect={totalConnect}
             convertPrice={convertPrice}
             randomNum={randomNum}
             buyitem={buyitem}
