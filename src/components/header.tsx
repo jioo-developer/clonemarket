@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
@@ -11,17 +11,22 @@ type detailProps = {
 const Header = ({ productConnect, products }: detailProps) => {
   const cart = useSelector((state: cartSelect) => state.cart);
   const [text, setText] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
   function findItem(e?) {
     const result = products.filter((item) => item.name.includes(text));
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && text !== "") {
+      productConnect(result);
+    } else if (e === "click") {
       productConnect(result);
     }
-    productConnect(result);
   }
 
   function initialProduct() {
     axios.get("/data/products.json").then((data) => {
       productConnect(data.data.products);
+      if (inputRef && inputRef.current) {
+        inputRef.current.value = "";
+      }
     });
   }
   return (
@@ -39,9 +44,10 @@ const Header = ({ productConnect, products }: detailProps) => {
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setText(e.target.value)
             }
+            ref={inputRef}
             onKeyPress={findItem}
           />
-          <button onClick={() => findItem()}>
+          <button onClick={() => findItem("click")}>
             <img src="/images/icon-search.svg" alt="search" />
           </button>
         </div>
