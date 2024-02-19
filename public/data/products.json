@@ -7,7 +7,8 @@
       "price": 17100,
       "image": "/images/image001.png",
       "quantity": 0,
-      "quick": true
+      "quick": true,
+      "class": "it"
     },
     {
       "id": 2,
@@ -16,7 +17,8 @@
       "price": 3000,
       "image": "/images/image002.png",
       "quantity": 0,
-      "quick": true
+      "quick": true,
+      "class": "it"
     },
     {
       "id": 3,
@@ -25,7 +27,8 @@
       "price": 7000,
       "image": "/images/image003.png",
       "quantity": 0,
-      "quick": true
+      "quick": true,
+      "class": "Interior"
     },
     {
       "id": 4,
@@ -34,7 +37,8 @@
       "price": 1900,
       "image": "/images/image004.png",
       "quantity": 0,
-      "quick": true
+      "quick": true,
+      "class": "Interior"
     },
     {
       "id": 5,
@@ -43,7 +47,8 @@
       "price": 99000,
       "image": "/images/image005.png",
       "quantity": 0,
-      "quick": false
+      "quick": false,
+      "class": "it"
     },
     {
       "id": 6,
@@ -52,7 +57,8 @@
       "price": 69000,
       "image": "/images/image006.png",
       "quantity": 0,
-      "quick": false
+      "quick": false,
+      "class": "it"
     },
     {
       "id": 7,
@@ -61,7 +67,8 @@
       "price": 1000000,
       "image": "/images/image007.png",
       "quantity": 0,
-      "quick": false
+      "quick": false,
+      "class": "Interior"
     },
     {
       "id": 8,
@@ -70,7 +77,18 @@
       "price": 5900,
       "image": "/images/image008.png",
       "quantity": 0,
-      "quick": false
+      "quick": false,
+      "class": "Interior"
+    },
+    {
+      "id": 9,
+      "name": "사무용 노트북",
+      "provider": "samsong",
+      "price": 1200000,
+      "image": "/images/image009.jpg",
+      "quantity": 0,
+      "quick": true,
+      "class": "it"
     }
   ]
 }

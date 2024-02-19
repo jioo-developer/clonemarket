@@ -4,6 +4,8 @@ import convertPrice from "../module/convertPrice.ts";
 import { useMyContext } from "../module/MyContext.tsx";
 import { calculator, cartAdd } from "../module/reducer.ts";
 import { useSelector } from "react-redux";
+import Recommend from "./recommend.tsx";
+
 const Detail = ({ products }: { products: productType[] }) => {
   const { dispatch } = useMyContext();
   const id: string = useLocation().state.id;
@@ -17,6 +19,7 @@ const Detail = ({ products }: { products: productType[] }) => {
     image: "",
     quantity: 0,
     quick: false,
+    class: "",
   };
   const [items, setItem] = useState<productType>(initialData);
 
@@ -78,100 +81,99 @@ const Detail = ({ products }: { products: productType[] }) => {
   return (
     <>
       {items ? (
-        <>
-          <main className="main">
-            <section className="in_product">
-              <div className="product_img">
-                <img src={items.image} alt="product" />
+        <main className="main">
+          <section className="in_product">
+            <div className="product_img">
+              <img src={items.image} alt="product" />
+            </div>
+          </section>
+          <section className="in_product">
+            <div className="product_info">
+              <p className="seller_store">{items.provider}</p>
+              <p className="product_name">{items.name}</p>
+              <span className="price">
+                {convertPrice(items.price)}
+                <span className="unit">원</span>
+              </span>
+            </div>
+
+            <div className="delivery">
+              <p
+                style={
+                  items.quick
+                    ? { color: "cadetblue", fontWeight: 600 }
+                    : { color: "#333" }
+                }
+              >
+                택배배송 /
+              </p>
+              <p
+                style={
+                  !items.quick
+                    ? { color: "cadetblue", fontWeight: 600 }
+                    : { color: "#333" }
+                }
+              >
+                &nbsp;빠른배송
+              </p>
+            </div>
+
+            <div className="line"></div>
+
+            <div className="amount">
+              <button onClick={() => handleQuantity("minus")}>
+                <img
+                  className="minus"
+                  src="/images/icon-minus-line.svg"
+                  alt="minus"
+                />
+              </button>
+              <div className="count">
+                <span>{count}</span>
               </div>
-            </section>
-            <section className="in_product">
-              <div className="product_info">
-                <p className="seller_store">{items.provider}</p>
-                <p className="product_name">{items.name}</p>
-                <span className="price">
-                  {items.price}
-                  <span className="unit">원</span>
+              <button onClick={() => handleQuantity("plus")}>
+                <img
+                  className="plus"
+                  src="/images/icon-plus-line.svg"
+                  alt="plus"
+                />
+              </button>
+            </div>
+
+            <div className="line"></div>
+
+            <div className="sum">
+              <div>
+                <span className="sum_price">총 상품 금액</span>
+              </div>
+
+              <div className="total_info">
+                <span className="total">
+                  총 수량 <span className="total_count">{count}개</span>
+                </span>
+                <span className="total_price">
+                  {convertPrice(items.price * count)}
+                  <span className="total_unit">원</span>
                 </span>
               </div>
+            </div>
 
-              <div className="delivery">
-                <p
-                  style={
-                    items.quick
-                      ? { color: "cadetblue", fontWeight: 600 }
-                      : { color: "#333" }
-                  }
-                >
-                  택배배송 /
-                </p>
-                <p
-                  style={
-                    !items.quick
-                      ? { color: "cadetblue", fontWeight: 600 }
-                      : { color: "#333" }
-                  }
-                >
-                  &nbsp;빠른배송
-                </p>
-              </div>
-
-              <div className="line"></div>
-
-              <div className="amount">
-                <button onClick={() => handleQuantity("minus")}>
-                  <img
-                    className="minus"
-                    src="/images/icon-minus-line.svg"
-                    alt="minus"
-                  />
-                </button>
-                <div className="count">
-                  <span>{count}</span>
-                </div>
-                <button onClick={() => handleQuantity("plus")}>
-                  <img
-                    className="plus"
-                    src="/images/icon-plus-line.svg"
-                    alt="plus"
-                  />
-                </button>
-              </div>
-
-              <div className="line"></div>
-
-              <div className="sum">
-                <div>
-                  <span className="sum_price">총 상품 금액</span>
-                </div>
-
-                <div className="total_info">
-                  <span className="total">
-                    총 수량 <span className="total_count">{count}개</span>
-                  </span>
-                  <span className="total_price">
-                    {convertPrice(items.price * count)}
-                    <span className="total_unit">원</span>
-                  </span>
-                </div>
-              </div>
-
-              <div className="btns">
-                <button
-                  className="btn_buy"
-                  onClick={() => {
-                    handleCart(items.id);
-                  }}
-                >
-                  장바구니
-                </button>
-              </div>
-            </section>
-          </main>
-        </>
+            <div className="btns">
+              <button
+                className="btn_buy"
+                onClick={() => {
+                  handleCart(items.id);
+                }}
+              >
+                장바구니
+              </button>
+            </div>
+          </section>
+        </main>
       ) : (
         "상품을 준비중입니다"
       )}
+      <Recommend products={products} type={items} />
     </>
   );
 };

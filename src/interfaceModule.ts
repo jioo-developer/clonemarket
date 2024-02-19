@@ -6,6 +6,7 @@ interface productType {
   image: string;
   quantity: number;
   quick: boolean;
+  class: string;
 }
 
 interface homeProps {
