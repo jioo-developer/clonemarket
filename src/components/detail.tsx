@@ -32,6 +32,19 @@ const Detail = ({ products }: { products: productType[] }) => {
     }
   }, [products]);
 
+  useEffect(() => {
+    if (items.name !== "") {
+      const loadRecently = localStorage.getItem("recently");
+      const parseRecently: string[] = JSON.parse(loadRecently || "{}");
+      if (!loadRecently) {
+        localStorage.setItem("recently", JSON.stringify([items.name]));
+      } else {
+        const newRecently: string[] = [...parseRecently, items.name];
+        localStorage.setItem("recently", JSON.stringify(newRecently));
+      }
+    }
+  }, [items]);
+
   const handleQuantity = (type: string) => {
     if (type === "plus") {
       setCount(count + 1);
@@ -61,7 +74,7 @@ const Detail = ({ products }: { products: productType[] }) => {
   };
 
   const handleCart = (id: number) => {
-    if (Object.entries(items).length > 0) {
+    if (items.name !== "") {
       //items에 item이 있을 때
       if (cart.length === 0) {
         cartFunc();

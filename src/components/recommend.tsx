@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import convertPrice from "../module/convertPrice.ts";
 import { productType } from "../interfaceModule";
+import { useMyContext } from "../module/MyContext.tsx";
 type RecommendProps = {
   products: productType[];
   type: productType;
@@ -8,6 +9,10 @@ type RecommendProps = {
 
 const Recommend = ({ products, type }: RecommendProps) => {
   const [recommend, setRecommend] = useState<productType[]>([]);
+  const { navigate } = useMyContext();
+  function detailDirect(id: number) {
+    navigate(`/product/${id}`, { state: { id: id } });
+  }
   useEffect(() => {
     if (products.length > 0) {
       const typeFilter = products.filter((item) => item.class === type.class);
@@ -23,7 +28,11 @@ const Recommend = ({ products, type }: RecommendProps) => {
         {recommend.length > 0
           ? recommend.map((product) => {
               return (
-                <div className="product" key={product.id}>
+                <div
+                  className="product"
+                  key={product.id}
+                  onClick={() => detailDirect(product.id)}
+                >
                   <div className="product_image">
                     <img src={product.image} alt="product" />
                   </div>

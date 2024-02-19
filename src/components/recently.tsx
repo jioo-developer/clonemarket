@@ -1,38 +1,23 @@
 import React, { useEffect, useState } from "react";
 import convertPrice from "../module/convertPrice.ts";
-import { useMyContext } from "../module/MyContext.tsx";
 import { productType } from "../interfaceModule";
-import recently from "../components/recently.tsx";
-import Recently from "../components/recently.tsx";
-type homeProps = {
-  products: productType[];
+import { useMyContext } from "../module/MyContext.tsx";
+
+type recentlyProps = {
+  recently: productType[];
 };
 
-const Product = ({ products }: homeProps) => {
-  const [recently, setRecently] = useState<productType[]>([]);
+const Recently = ({ recently }: recentlyProps) => {
   const { navigate } = useMyContext();
   function detailDirect(id: number) {
     navigate(`/product/${id}`, { state: { id: id } });
   }
-  const loadData = localStorage.getItem("recently");
-
-  useEffect(() => {
-    if (loadData) {
-      const parseData: string[] = JSON.parse(loadData);
-      const resultData = parseData
-        .map((item) => products.filter((el) => el.name === item))
-        .flat();
-      const set = new Set(resultData);
-      const res = Array.from(set);
-      setRecently(res);
-    }
-  }, [loadData, products]);
   return (
-    <main className="flex_wrap">
-      <Recently recently={recently} />
-      <div>
-        {products.length > 0
-          ? products.map((product) => {
+    <div className="recently-wrap">
+      <p>최근 본 상품</p>
+      <div className="recently-inWrap">
+        {recently.length > 0
+          ? recently.map((product) => {
               return (
                 <div
                   className="product"
@@ -59,8 +44,8 @@ const Product = ({ products }: homeProps) => {
             })
           : null}
       </div>
-    </main>
+    </div>
   );
 };
 
-export default Product;
+export default Recently;
