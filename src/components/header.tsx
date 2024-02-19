@@ -12,11 +12,11 @@ const Header = ({ productConnect, products }: detailProps) => {
   const cart = useSelector((state: cartSelect) => state.cart);
   const [text, setText] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
-  function findItem(e?) {
+  function findItem(e: React.KeyboardEvent<HTMLInputElement> | string) {
     const result = products.filter((item) => item.name.includes(text));
-    if (e.key === "Enter" && text !== "") {
+    if (typeof e === "object" && e.key === "Enter" && text !== "") {
       productConnect(result);
-    } else if (e === "click") {
+    } else if (typeof e === "string" && e === "click") {
       productConnect(result);
     }
   }
@@ -45,7 +45,7 @@ const Header = ({ productConnect, products }: detailProps) => {
               setText(e.target.value)
             }
             ref={inputRef}
-            onKeyPress={findItem}
+            onKeyPress={(e) => findItem(e)}
           />
           <button onClick={() => findItem("click")}>
             <img src="/images/icon-search.svg" alt="search" />
