@@ -8,7 +8,8 @@ import convertPrice from "../module/convertPrice.ts";
 import { useMyContext } from "../module/MyContext.tsx";
 import { useSelector } from "react-redux";
 import { calculator, cartAdd, removeItem } from "../module/reducer.ts";
-
+import { productType } from "../interfaceModule";
+import { cartSelect } from "../interfaceModule";
 const Cart = () => {
   const [total, setTotal] = useState<number>(0);
   const [checkLists, setCheckLists] = useState<number[]>([]);

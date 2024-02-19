@@ -1,6 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
-
+import { productType } from "../../interfaceModule";
 type TotalCartProps = {
   total: number;
   cart: productType[];

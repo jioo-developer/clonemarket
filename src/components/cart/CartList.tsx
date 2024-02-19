@@ -1,5 +1,5 @@
 import React from "react";
-
+import { productType } from "../../interfaceModule";
 type cartListProps = {
   item: productType;
   convertPrice: (price: number) => string;

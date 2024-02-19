@@ -1,4 +1,4 @@
-interface productType {
+export interface productType {
   id: number;
   name: string;
   provider: string;
@@ -9,10 +9,6 @@ interface productType {
   class: string;
 }
 
-interface homeProps {
-  products: productType[];
-}
-
-type cartSelect = {
+export interface cartSelect {
   cart: productType[];
-};
+}

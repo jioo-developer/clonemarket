@@ -1,6 +1,10 @@
 import React from "react";
 import convertPrice from "../module/convertPrice.ts";
 import { useMyContext } from "../module/MyContext.tsx";
+import { productType } from "../interfaceModule";
+type homeProps = {
+  products: productType[];
+};
 
 const Product = ({ products }: homeProps) => {
   const { navigate } = useMyContext();

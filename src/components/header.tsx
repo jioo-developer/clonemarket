@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { ChangeEvent, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
+import { productType } from "../interfaceModule";
+import { cartSelect } from "../interfaceModule";
 type detailProps = {
   productConnect: (params: productType[]) => void;
   products: productType[];

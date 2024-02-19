@@ -5,6 +5,8 @@ import { useMyContext } from "../module/MyContext.tsx";
 import { calculator, cartAdd } from "../module/reducer.ts";
 import { useSelector } from "react-redux";
 import Recommend from "./recommend.tsx";
+import { productType } from "../interfaceModule";
+import { cartSelect } from "../interfaceModule";
 
 const Detail = ({ products }: { products: productType[] }) => {
   const { dispatch } = useMyContext();

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import convertPrice from "../module/convertPrice.ts";
+import { productType } from "../interfaceModule";
 type RecommendProps = {
   products: productType[];
   type: productType;
