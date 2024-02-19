@@ -4,11 +4,17 @@ import CartHeader from "./cart/CartHeader.tsx";
 import CartList from "./cart/CartList.tsx";
 import TotalCart from "./cart/TotalCart.tsx";
 import CartCoupon from "./cart/CartCoupon.tsx";
+import convertPrice from "../module/convertPrice.ts";
+import { useMyContext } from "../module/MyContext.tsx";
+import { useSelector } from "react-redux";
+import { calculator, cartAdd, removeItem } from "../module/reducer.ts";
 
-const Cart = ({ cart, convertPrice, cartConnect }) => {
+const Cart = () => {
   const [total, setTotal] = useState<number>(0);
   const [checkLists, setCheckLists] = useState<number[]>([]);
   const [randomNum, setRandom] = useState(0);
+  const { dispatch } = useMyContext();
+  const cart = useSelector((state: cartSelect) => state.cart);
 
   const handleQuantity = (id: number, quantity: number) => {
     const found = cart.filter((el) => el.id === id)[0];
@@ -16,11 +22,11 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
     const newNum = found;
     newNum.quantity = quantity;
     const splice = cart.splice(idx, 1, newNum);
-    cartConnect(splice);
+    dispatch(calculator(splice));
   };
 
   const handleRemove = (productId: number) => {
-    cartConnect(cart.filter((cart) => cart.id !== productId));
+    dispatch(removeItem(cart.filter((cart) => cart.id !== productId)));
   };
 
   const handlerCheckList = (checked: boolean, productId: number) => {
@@ -61,12 +67,9 @@ const Cart = ({ cart, convertPrice, cartConnect }) => {
 
   function buyitem() {
     if (cart.length > 0) {
-      const result = [].concat(
-        ...checkLists.map((item) => {
-          return cart.filter((el) => el.id === item);
-        })
-      );
-      return result;
+      return checkLists
+        .map((item) => cart.filter((el) => el.id === item))
+        .flat();
     } else {
       return [];
     }

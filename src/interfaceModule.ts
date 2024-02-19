@@ -9,11 +9,9 @@ interface productType {
 }
 
 interface homeProps {
-  convertPrice: (price: number) => string;
   products: productType[];
 }
 
-interface detailProps extends homeProps {
+type cartSelect = {
   cart: productType[];
-  cartConnect: (params: productType[]) => void;
-}
+};

@@ -1,10 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
-const Detail = ({ convertPrice, cart, products, cartConnect }: detailProps) => {
+import convertPrice from "../module/convertPrice.ts";
+import { useMyContext } from "../module/MyContext.tsx";
+import { calculator, cartAdd } from "../module/reducer.ts";
+import { useSelector } from "react-redux";
+const Detail = ({ products }: { products: productType[] }) => {
+  const { dispatch } = useMyContext();
   const id: string = useLocation().state.id;
   const [count, setCount] = useState(1);
-
+  const cart = useSelector((state: cartSelect) => state.cart);
   const initialData: productType = {
     id: 0,
     name: "",
@@ -14,9 +18,16 @@ const Detail = ({ convertPrice, cart, products, cartConnect }: detailProps) => {
     quantity: 0,
     quick: false,
   };
+  const [items, setItem] = useState<productType>(initialData);
+
+  useEffect(() => {
+    if (products.length > 0) {
+      const data = products.filter((item) => item.id === parseInt(id))[0];
+      setItem(data);
+    }
+  }, [products]);
 
   const handleQuantity = (type: string) => {
-    console.log(type);
     if (type === "plus") {
       setCount(count + 1);
     } else {
@@ -27,55 +38,59 @@ const Detail = ({ convertPrice, cart, products, cartConnect }: detailProps) => {
   };
 
   const setQuantity = (overlapProduct: productType) => {
+    //상품 객체를 받음
     const idx = cart.indexOf(overlapProduct);
+    // 카트에서 상품객체의 위치를 찾음
     const newNum = overlapProduct;
+    // 상품 객체를 복사 한 후
     newNum.quantity = newNum.quantity + count;
     const splice = cart.splice(idx, 1, newNum);
-    cartConnect(splice);
+    // 복사한 상품 객체의 갯수를 증가 시킴
+    dispatch(calculator(splice));
+  };
+
+  const cartFunc = () => {
+    const num = items;
+    num.quantity = num.quantity + 1;
+    dispatch(cartAdd(num));
   };
 
   const handleCart = (id: number) => {
-    if (cart.length === 0) {
-      const num = item();
-      num.quantity = num.quantity + 1;
-      cartConnect([num]);
-    } else {
-      const found = cart.filter((item) => item.id === id);
-      if (found.length > 0) {
-        setQuantity(found[0]);
+    if (Object.entries(items).length > 0) {
+      //items에 item이 있을 때
+      if (cart.length === 0) {
+        cartFunc();
+        //카트에 item이 없을 때
       } else {
-        const num = item();
-        num.quantity = num.quantity + 1;
-        cartConnect([...cart, num]);
+        const found = cart.filter((item) => item.id === id);
+        // 카트에 이미 그 상품이 있을 때
+        if (found.length > 0) {
+          setQuantity(found[0]);
+          // 상품 객체를 넘김
+        } else {
+          cartFunc();
+          // 카트에 그 상품은 없지만 다른 상품은 있을 때
+        }
       }
     }
   };
 
-  function item() {
-    if (products.length > 0) {
-      const result = products.filter((item) => item.id === parseInt(id))[0];
-      return Object.entries(result).length > 0 ? result : initialData;
-    } else {
-      return initialData;
-    }
-  }
-
   return (
     <>
-      {item() ? (
+      {items ? (
         <>
           <main className="main">
             <section className="in_product">
               <div className="product_img">
-                <img src={item().image} alt="product" />
+                <img src={items.image} alt="product" />
               </div>
             </section>
             <section className="in_product">
               <div className="product_info">
-                <p className="seller_store">{item().provider}</p>
-                <p className="product_name">{item().name}</p>
+                <p className="seller_store">{items.provider}</p>
+                <p className="product_name">{items.name}</p>
                 <span className="price">
-                  {item().price}
+                  {items.price}
                   <span className="unit">원</span>
                 </span>
               </div>
@@ -83,7 +98,7 @@ const Detail = ({ convertPrice, cart, products, cartConnect }: detailProps) => {
               <div className="delivery">
                 <p
                   style={
-                    item().quick
+                    items.quick
                       ? { color: "cadetblue", fontWeight: 600 }
                       : { color: "#333" }
                   }
@@ -92,7 +107,7 @@ const Detail = ({ convertPrice, cart, products, cartConnect }: detailProps) => {
                 </p>
                 <p
                   style={
-                    !item().quick
+                    !items.quick
                       ? { color: "cadetblue", fontWeight: 600 }
                       : { color: "#333" }
                   }
@@ -135,7 +150,7 @@ const Detail = ({ convertPrice, cart, products, cartConnect }: detailProps) => {
                     총 수량 <span className="total_count">{count}개</span>
                   </span>
                   <span className="total_price">
-                    {convertPrice(item().price * count)}
+                    {convertPrice(items.price * count)}
                     <span className="total_unit">원</span>
                   </span>
                 </div>
@@ -145,7 +160,7 @@ const Detail = ({ convertPrice, cart, products, cartConnect }: detailProps) => {
                 <button
                   className="btn_buy"
                   onClick={() => {
-                    handleCart(item().id);
+                    handleCart(items.id);
                   }}
                 >
                   장바구니
