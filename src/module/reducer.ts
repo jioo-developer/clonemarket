@@ -35,9 +35,11 @@ export default function reducer(state = initialState, action: any) {
           : [...state.cart, action.data],
       };
     case quantity:
+      const set = new Set([...state.cart, ...action.data]);
+      const arr = Array.from(set);
       return {
         ...state,
-        cart: action.data,
+        cart: arr,
       };
     case remove:
       return {

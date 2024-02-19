@@ -41,7 +41,7 @@ const Detail = ({ products }: { products: productType[] }) => {
     //상품 객체를 받음
     const idx = cart.indexOf(overlapProduct);
     // 카트에서 상품객체의 위치를 찾음
-    const newNum = overlapProduct;
+    const newNum = { ...overlapProduct };
     // 상품 객체를 복사 한 후
     newNum.quantity = newNum.quantity + count;
     const splice = cart.splice(idx, 1, newNum);
@@ -50,7 +50,7 @@ const Detail = ({ products }: { products: productType[] }) => {
   };
 
   const cartFunc = () => {
-    const num = items;
+    const num = { ...items };
     num.quantity = num.quantity + 1;
     dispatch(cartAdd(num));
   };
