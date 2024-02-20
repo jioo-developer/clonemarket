@@ -159,11 +159,11 @@ const Cart = () => {
         <button
           className="btn_buy"
           style={
-            cart.length === 0
+            cart.length === 0 || total === 0
               ? { background: "#767676", height: 80 }
               : { height: 80 }
           }
-          disabled={cart.length === 0}
+          disabled={cart.length === 0 || total === 0}
           onClick={() => setBill(true)}
         >
           구매하기
