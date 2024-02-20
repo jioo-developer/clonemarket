@@ -1040,14 +1040,7 @@ button {
 .recommend-wrap .product {
   margin-left: 20px;
 }
-.recommend-wrap .product:first-child {
-  margin-left: 0;
-}
 
-.recommend-wrap .product .product_image img {
-  width: auto;
-  min-width: 150px;
-}
 .in_product {
   width: 600px;
   margin-right: 50px;
@@ -1063,18 +1056,13 @@ button {
   width: 100%;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  place-items: center;
-  gap: 0 50px;
+  gap: 50px;
 }
 
 .recently-inWrap {
-  width: 100%;
+  width: 85%;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  place-items: center;
-  gap: 0 50px;
-  height: 340px;
-  overflow: hidden;
+  gap: 0 30px;
 }
 
 @media (max-width: 968px) {

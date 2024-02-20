@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import convertPrice from "../module/convertPrice.ts";
 import { useMyContext } from "../module/MyContext.tsx";
 import { productType } from "../interfaceModule";
-import recently from "../components/recently.tsx";
 import Recently from "../components/recently.tsx";
 type homeProps = {
   products: productType[];
@@ -12,7 +11,7 @@ const Product = ({ products }: homeProps) => {
   const [recently, setRecently] = useState<productType[]>([]);
   const { navigate } = useMyContext();
   function detailDirect(id: number) {
-    navigate(`/product/${id}`, { state: { id: id } });
+    navigate(`/product/${id}`);
   }
   const loadData = localStorage.getItem("recently");
 

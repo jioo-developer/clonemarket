@@ -1,3 +1,5 @@
+import { productType } from "../interfaceModule";
+
 type initialStateType = {
   cart: productType[];
 };
@@ -9,7 +11,6 @@ const initialState: initialStateType = {
 const addCart = "addCart";
 const quantity = "quantity";
 const remove = "remove";
-
 export const cartAdd = (data: productType | productType[]) => ({
   type: addCart,
   data,

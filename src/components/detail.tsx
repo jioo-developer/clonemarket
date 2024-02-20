@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
 import convertPrice from "../module/convertPrice.ts";
 import { useMyContext } from "../module/MyContext.tsx";
 import { calculator, cartAdd } from "../module/reducer.ts";
@@ -7,12 +6,13 @@ import { useSelector } from "react-redux";
 import Recommend from "./recommend.tsx";
 import { productType } from "../interfaceModule";
 import { cartSelect } from "../interfaceModule";
+import { useParams } from "react-router-dom";
 
 const Detail = ({ products }: { products: productType[] }) => {
-  const { dispatch } = useMyContext();
-  const id: string = useLocation().state.id;
+  const { dispatch, navigate } = useMyContext();
   const [count, setCount] = useState(1);
   const cart = useSelector((state: cartSelect) => state.cart);
+  const pageId = useParams().id;
   const initialData: productType = {
     id: 0,
     name: "",
@@ -26,11 +26,15 @@ const Detail = ({ products }: { products: productType[] }) => {
   const [items, setItem] = useState<productType>(initialData);
 
   useEffect(() => {
-    if (products.length > 0) {
-      const data = products.filter((item) => item.id === parseInt(id))[0];
-      setItem(data);
+    if (products.length > 0 && pageId) {
+      const data = products.filter((item) => item.id === parseInt(pageId))[0];
+      if (data) {
+        setItem(data);
+      } else {
+        navigate("/");
+      }
     }
-  }, [products]);
+  }, [products, pageId]);
 
   useEffect(() => {
     if (items.name !== "") {
