@@ -3,19 +3,21 @@ import { productType } from "../../interfaceModule";
 type cartListProps = {
   item: productType;
   convertPrice: (price: number) => string;
-  handleQuantity: (id: number, quantity: number) => void;
   handleRemove: (productId: number) => void;
   handlerCheckList: (checked: boolean, productId: number) => void;
   checkLists: number[];
+  quantityConnect: (target: number, value: number) => void;
+  count: number;
 };
 
 const CartList = ({
   item,
   convertPrice,
-  handleQuantity,
   handleRemove,
   handlerCheckList,
   checkLists,
+  count,
+  quantityConnect,
 }: cartListProps) => {
   return (
     <section className="cart_product_list">
@@ -43,8 +45,8 @@ const CartList = ({
       <div className="cart_product_count">
         <button
           onClick={() => {
-            if (item.quantity > 1) {
-              handleQuantity(item.id, item.quantity - 1);
+            if (count > 1) {
+              quantityConnect(item.id, count - 1);
             }
           }}
         >
@@ -56,10 +58,16 @@ const CartList = ({
         </button>
 
         <div className="count">
-          <span>{item.quantity}</span>
+          <input
+            type="number"
+            onChange={(e) => quantityConnect(item.id, parseInt(e.target.value))}
+            defaultValue={count}
+            value={count}
+            min={1}
+          />
         </div>
 
-        <button onClick={() => handleQuantity(item.id, item.quantity + 1)}>
+        <button onClick={() => quantityConnect(item.id, count + 1)}>
           <img className="plus" src="/images/icon-plus-line.svg" alt="plus" />
         </button>
       </div>

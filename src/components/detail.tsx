@@ -148,7 +148,12 @@ const Detail = ({ products }: { products: productType[] }) => {
                 />
               </button>
               <div className="count">
-                <span>{count}</span>
+                <input
+                  type="number"
+                  onChange={(e) => setCount(parseInt(e.target.value))}
+                  defaultValue={count}
+                  value={count}
+                />
               </div>
               <button onClick={() => handleQuantity("plus")}>
                 <img
@@ -168,10 +173,15 @@ const Detail = ({ products }: { products: productType[] }) => {
 
               <div className="total_info">
                 <span className="total">
-                  총 수량 <span className="total_count">{count}개</span>
+                  총 수량{" "}
+                  <span className="total_count">
+                    {isNaN(count) ? "" : count}개
+                  </span>
                 </span>
                 <span className="total_price">
-                  {convertPrice(items.price * count)}
+                  {isNaN(parseInt(convertPrice(items.price * count)))
+                    ? ""
+                    : convertPrice(items.price * count)}
                   <span className="total_unit">원</span>
                 </span>
               </div>

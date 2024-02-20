@@ -1,10 +1,31 @@
 @import url("https://webfontworld.github.io/pretendard/Pretendard.css");
 
+@font-face {
+  font-family: "AppleSDGothicNeoR";
+  font-weight: 400;
+  src: url("/public/font/AppleSDGothicNeoR.eot");
+  src: url("/public/font/AppleSDGothicNeoR.woff") format("woff");
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeoM";
+  font-weight: 500;
+  src: url("/public/font/AppleSDGothicNeoM.eot");
+  src: url("/public/font/AppleSDGothicNeoM.woff") format("woff");
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeoSB";
+  font-weight: 600;
+  src: url("/public/font/AppleSDGothicNeoSB.eot");
+  src: url("/public/font/AppleSDGothicNeoSB.woff") format("woff");
+}
+
 * {
   margin: 0;
   padding: 0;
   background: #ffffff;
-  font-family: "Pretendard-Regular";
+  font-family: "AppleSDGothicNeoR";
   box-sizing: border-box;
   font-style: normal;
   font-weight: normal;
@@ -1063,6 +1084,7 @@ button {
   width: 85%;
   display: grid;
   gap: 0 30px;
+  grid-template-columns: repeat(5, 1fr);
 }
 
 .cover {
@@ -1072,6 +1094,81 @@ button {
   position: absolute;
   top: 0;
   left: 0;
+}
+
+.bill_wrap {
+  max-width: 750px;
+  margin: 30px auto 0 auto;
+  height: 93vh;
+  border-radius: 10px;
+}
+
+.bill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  border-radius: 10px;
+  border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.bill-header p {
+  text-align: center;
+  font-size: 24px;
+  margin: 0 auto;
+  font-family: AppleSDGothicNeoSB;
+}
+
+.bill-header img {
+  margin: 2px 30px 0 0;
+}
+
+.order-userInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 60px;
+}
+
+.order-userInfo .userName {
+  display: flex;
+}
+
+.order-userInfo .userName summary {
+  font-family: AppleSDGothicNeoSB;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: "\2193";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 34px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.order-userInfo .userName input {
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid #ccc;
+}
+
+input {
+  outline: none;
+  border: 0;
+}
+
+.count input {
+  width: 100%;
+  text-align: center;
+  text-indent: 8px;
 }
 
 @media (max-width: 968px) {

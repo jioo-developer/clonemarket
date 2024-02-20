@@ -17,6 +17,7 @@ const Cart = () => {
   const [bill, setBill] = useState<boolean>(false);
   const [randomNum, setRandom] = useState(0);
   const { dispatch } = useMyContext();
+  const [count, setCount] = useState<number>(1);
   const cart = useSelector((state: cartSelect) => state.cart);
 
   const handleQuantity = (id: number, quantity: number) => {
@@ -68,6 +69,13 @@ const Cart = () => {
     setTotal(value);
   };
 
+  const quantityConnect = (target: number, value: number) => {
+    setCount((prev) => {
+      handleQuantity(target, value);
+      return value;
+    });
+  };
+
   function buyitem() {
     if (cart.length > 0) {
       return checkLists
@@ -111,10 +119,11 @@ const Cart = () => {
         cart.map((item: productType) => {
           return (
             <CartList
+              count={count}
+              quantityConnect={quantityConnect}
               key={item.id}
               item={item}
               convertPrice={convertPrice}
-              handleQuantity={handleQuantity}
               handlerCheckList={handlerCheckList}
               handleRemove={handleRemove}
               checkLists={checkLists}

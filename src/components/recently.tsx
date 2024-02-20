@@ -14,11 +14,8 @@ const Recently = ({ recently }: recentlyProps) => {
   }
   return (
     <div className="recently-wrap">
-      <p>최근 본 상품</p>
-      <div
-        className="recently-inWrap"
-        style={{ gridTemplateColumns: `repeat(${recently.length},1fr)` }}
-      >
+      {recently.length > 0 ? <p>최근 본 상품</p> : null}
+      <div className="recently-inWrap">
         {recently.length > 0
           ? recently.map((product) => {
               return (
