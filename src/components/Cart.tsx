@@ -10,9 +10,11 @@ import { useSelector } from "react-redux";
 import { calculator, cartAdd, removeItem } from "../module/reducer.ts";
 import { productType } from "../interfaceModule";
 import { cartSelect } from "../interfaceModule";
+import CartBill from "./cart/CartBill.tsx";
 const Cart = () => {
   const [total, setTotal] = useState<number>(0);
   const [checkLists, setCheckLists] = useState<number[]>([]);
+  const [bill, setBill] = useState<boolean>(false);
   const [randomNum, setRandom] = useState(0);
   const { dispatch } = useMyContext();
   const cart = useSelector((state: cartSelect) => state.cart);
@@ -141,10 +143,19 @@ const Cart = () => {
         </>
       ) : null}
       <div className="result">
-        <button className="btn_buy" style={{ height: 80 }}>
+        <button
+          className="btn_buy"
+          style={{ height: 80 }}
+          onClick={() => setBill(true)}
+        >
           구매하기
         </button>
       </div>
+      {bill ? (
+        <div className="cover">
+          <CartBill />
+        </div>
+      ) : null}
     </>
   );
 };
