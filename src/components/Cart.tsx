@@ -70,7 +70,6 @@ const Cart = () => {
   };
 
   const billConnect = (value: boolean) => {
-    console.log(value);
     setBill(value);
   };
 
@@ -159,7 +158,12 @@ const Cart = () => {
       <div className="result">
         <button
           className="btn_buy"
-          style={{ height: 80 }}
+          style={
+            cart.length === 0
+              ? { background: "#767676", height: 80 }
+              : { height: 80 }
+          }
+          disabled={cart.length === 0}
           onClick={() => setBill(true)}
         >
           구매하기
@@ -167,7 +171,11 @@ const Cart = () => {
       </div>
       {bill ? (
         <div className="cover">
-          <CartBill billConnect={billConnect} />
+          <CartBill
+            billConnect={billConnect}
+            random={randomNum}
+            total={total}
+          />
         </div>
       ) : null}
     </>
