@@ -1205,7 +1205,6 @@ input {
 .count input {
   width: 100%;
   text-align: center;
-  text-indent: 8px;
 }
 
 .mb30 {
@@ -1341,4 +1340,12 @@ p > span,
   .product_name span {
     font-size: 12px;
   }
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
 }

@@ -29,18 +29,44 @@ export const removeItem = (data: productType[]) => ({
 export default function reducer(state = initialState, action: any) {
   switch (action.type) {
     case addCart:
+      const result = Array.isArray(action.data)
+        ? [...state.cart, ...action.data]
+        : [...state.cart, action.data];
+      const addset = result.filter((value, idx, arr) => {
+        // value = 각각의 값 , idx = 순서 arr = 순회대상
+        return (
+          arr.findIndex((item) => {
+            return (
+              item.id === value.id &&
+              item.name === value.name &&
+              item.price === value.price
+            );
+          }) === idx
+          //비교할 대상 item과 value를 뱌교
+        );
+      });
       return {
         ...state,
-        cart: Array.isArray(action.data)
-          ? [...state.cart, ...action.data]
-          : [...state.cart, action.data],
+        cart: addset,
       };
     case quantity:
-      const set = new Set([...state.cart, ...action.data]);
-      const arr = Array.from(set);
+      const quArr = [...state.cart, ...action.data];
+      const quantitySet = quArr.filter((value, idx, arr) => {
+        // value = 각각의 값 , idx = 순서 arr = 순회대상
+        return (
+          arr.findIndex((item) => {
+            return (
+              item.id === value.id &&
+              item.name === value.name &&
+              item.price === value.price
+            );
+          }) === idx
+          //비교할 대상 item과 value를 뱌교
+        );
+      });
       return {
         ...state,
-        cart: arr,
+        cart: quantitySet,
       };
     case remove:
       return {

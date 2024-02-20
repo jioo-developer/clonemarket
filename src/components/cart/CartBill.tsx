@@ -62,7 +62,7 @@ const CartBill = ({ billConnect, random, total }: billProps) => {
                     <figcaption className="item-info">
                       <p>{item.name}</p>
                       <p>{item.quantity}개</p>
-                      <p>{convertPrice(item.price)}원</p>
+                      <p>{convertPrice(item.price * item.quantity)}원</p>
                     </figcaption>
                   </div>
                 </div>
