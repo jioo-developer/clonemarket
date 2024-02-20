@@ -78,7 +78,7 @@ const Detail = ({ products }: { products: productType[] }) => {
   };
 
   const handleCart = (id: number) => {
-    if (items.name !== "") {
+    if (items.name !== "" && !isNaN(count)) {
       //items에 item이 있을 때
       if (cart.length === 0) {
         cartFunc();
