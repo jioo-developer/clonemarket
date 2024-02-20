@@ -51,9 +51,9 @@ const CartBill = ({ billConnect, random, total }: billProps) => {
       <div className="order-contents pdb30 bgwhite">
         <div className="conheader bold pdt30 pdb30">주문 상품 정보</div>
         {cart.length > 0
-          ? cart.map((item) => {
+          ? cart.map((item, index) => {
               return (
-                <div className="order-conMap">
+                <div className="order-conMap" key={index}>
                   <p className="in_wrap">{item.provider}</p>
                   <div className="order-inCon in_wrap">
                     <figure>
