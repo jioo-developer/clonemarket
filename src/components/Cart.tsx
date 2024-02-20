@@ -7,7 +7,7 @@ import CartCoupon from "./cart/CartCoupon.tsx";
 import convertPrice from "../module/convertPrice.ts";
 import { useMyContext } from "../module/MyContext.tsx";
 import { useSelector } from "react-redux";
-import { calculator, cartAdd, removeItem } from "../module/reducer.ts";
+import { calculator, removeItem } from "../module/reducer.ts";
 import { productType } from "../interfaceModule";
 import { cartSelect } from "../interfaceModule";
 import CartBill from "./cart/CartBill.tsx";
@@ -67,6 +67,11 @@ const Cart = () => {
 
   const totalConnect = (value: number) => {
     setTotal(value);
+  };
+
+  const billConnect = (value: boolean) => {
+    console.log(value);
+    setBill(value);
   };
 
   const quantityConnect = (target: number, value: number) => {
@@ -162,7 +167,7 @@ const Cart = () => {
       </div>
       {bill ? (
         <div className="cover">
-          <CartBill />
+          <CartBill billConnect={billConnect} />
         </div>
       ) : null}
     </>

@@ -82,7 +82,9 @@ const TotalCart = ({
       <div className="payment">
         <p className="cart_prouct_payment">결제 예정 금액</p>
         <p className="cart_prouct_payment_price">
-          {isNaN(parseInt(convertPrice(total))) ? "" : convertPrice(total)}
+          {isNaN(parseInt(convertPrice(total)))
+            ? ""
+            : convertPrice(Math.round(total / 10) * 10)}
         </p>
       </div>
     </div>
