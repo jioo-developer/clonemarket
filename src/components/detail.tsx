@@ -73,7 +73,7 @@ const Detail = ({ products }: { products: productType[] }) => {
 
   const cartFunc = () => {
     const num = { ...items };
-    num.quantity = num.quantity + 1;
+    num.quantity = num.quantity + count;
     dispatch(cartAdd(num));
   };
 
@@ -121,7 +121,7 @@ const Detail = ({ products }: { products: productType[] }) => {
                 style={
                   items.quick
                     ? { color: "cadetblue", fontWeight: 600 }
-                    : { color: "#333" }
+                    : { color: "rgb(185 185 185)" }
                 }
               >
                 택배배송 /
@@ -130,7 +130,7 @@ const Detail = ({ products }: { products: productType[] }) => {
                 style={
                   !items.quick
                     ? { color: "cadetblue", fontWeight: 600 }
-                    : { color: "#333" }
+                    : { color: "rgb(185 185 185)" }
                 }
               >
                 &nbsp;빠른배송

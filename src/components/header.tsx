@@ -32,12 +32,16 @@ const Header = ({ productConnect, products }: detailProps) => {
   }
   return (
     <header className="header">
-      <div className="inner">
+      <div className="logo-wrap">
         <Link to="/">
           <h1 className="logo" onClick={initialProduct}>
-            <img src="/images/logo.png" alt="logo" />
+            <img src="/images/logo.jpg" alt="logo" />
           </h1>
         </Link>
+        <p>shop</p>
+      </div>
+
+      <div className="inner">
         <div className="input_wrap">
           <input
             type="text"
@@ -52,22 +56,21 @@ const Header = ({ productConnect, products }: detailProps) => {
             <img src="/images/icon-search.svg" alt="search" />
           </button>
         </div>
-      </div>
-
-      <div className="menu">
-        <Link to="/cart">
-          <div className="shopping_cart">
-            <img src="/images/icon-shopping-cart.svg" alt="cart" />
-            <span>장바구니</span>
-            {cart.length >= 1 ? (
-              <div className="new_shopping_cart">
-                <p>{cart.length}</p>
-              </div>
-            ) : (
-              ""
-            )}
-          </div>
-        </Link>
+        <div className="menu">
+          <Link to="/cart">
+            <div className="shopping_cart">
+              <img src="/images/shopping-bag.png" alt="cart" />
+              <span>장바구니</span>
+              {cart.length >= 1 ? (
+                <div className="new_shopping_cart">
+                  <p>{cart.length}</p>
+                </div>
+              ) : (
+                ""
+              )}
+            </div>
+          </Link>
+        </div>
       </div>
     </header>
   );

@@ -18,7 +18,7 @@ const Recommend = ({ products, type }: RecommendProps) => {
   }, [products, type]);
 
   return (
-    <div className="recommend-wrap">
+    <div className="recommend-wrap recently-wrap pdb30">
       <p>추천 상품</p>
       <div className="recommend-inWrap">
         {recommend.length > 0
