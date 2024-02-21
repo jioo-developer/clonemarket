@@ -1,8 +1,37 @@
+@import url("https://webfontworld.github.io/pretendard/Pretendard.css");
+
+@font-face {
+  font-family: "AppleSDGothicNeoR";
+  font-weight: 400;
+  src: url("/public/font/AppleSDGothicNeoR.eot");
+  src: url("/public/font/AppleSDGothicNeoR.woff") format("woff");
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeoM";
+  font-weight: 500;
+  src: url("/public/font/AppleSDGothicNeoM.eot");
+  src: url("/public/font/AppleSDGothicNeoM.woff") format("woff");
+}
+
+@font-face {
+  font-family: "AppleSDGothicNeoSB";
+  font-weight: 600;
+  src: url("/public/font/AppleSDGothicNeoSB.eot");
+  src: url("/public/font/AppleSDGothicNeoSB.woff") format("woff");
+}
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+.notosanskr * {
+  font-family: "Noto Sans KR", sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
   background: #ffffff;
-  font-family: Spoqa Han Sans Neo;
+  font-family: "AppleSDGothicNeoR";
   box-sizing: border-box;
   font-style: normal;
   font-weight: normal;
@@ -19,13 +48,16 @@ li {
 
 button {
   cursor: pointer;
+  background: transparent;
+  outline: none;
+  border: 0;
 }
 
 .header {
   display: flex;
   justify-content: center;
   margin: 0 auto;
-  margin-top: 54px;
+  margin-top: 40px;
 }
 
 .tab_title {
@@ -65,6 +97,10 @@ button {
   color: #767676;
 }
 
+.store {
+  margin-bottom: 8px;
+}
+
 /* cartList*/
 .cart_product_list {
   position: relative;
@@ -102,6 +138,7 @@ button {
   width: 160px;
   height: 160px;
   border-radius: 10px;
+  cursor: pointer;
 }
 
 .cart_product_image img {
@@ -127,13 +164,14 @@ button {
   line-height: 22px;
   color: #000000;
   margin-bottom: 10px;
+  font-family: AppleSDGothicNeoSB;
 }
 
 .cart_product_info .price {
   font-size: 15px;
   line-height: 20px;
   color: #000000;
-  margin-bottom: 25px;
+  margin-bottom: 18px;
 }
 
 .cart_product_info .delivery {
@@ -216,7 +254,7 @@ button {
 /* cart */
 .not {
   text-align: center;
-  margin-top: 110px;
+  margin: 110px 0;
 }
 
 .not h2 {
@@ -267,6 +305,7 @@ button {
   line-height: 20px;
   color: #000000;
   margin-bottom: 12px;
+  font-family: AppleSDGothicNeoSB;
 }
 
 .total_price .cart_product_price,
@@ -475,7 +514,7 @@ button {
   line-height: 35px;
   text-align: center;
   white-space: nowrap;
-  color: #5f816c;
+  color: #333;
   outline: 0;
   width: 100%;
   max-width: 280px;
@@ -490,11 +529,14 @@ button {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+
+  p {
+    font-weight: 500;
+  }
 }
 
 .total_discount {
-  margin-left: auto;
-  margin: 10px 0 100px auto;
+  margin: 10px 0 0 auto;
   display: inline-block;
 }
 
@@ -505,6 +547,21 @@ button {
   justify-content: space-around;
   align-items: center;
   box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.1);
+}
+
+.header h1 {
+  font-family: AppleSDGothicNeoSB;
+}
+
+.header .logo {
+  width: 163px;
+  height: 100px;
+  margin-top: -45px;
+  overflow: hidden;
+}
+
+.header .logo img {
+  width: 100%;
 }
 
 .inner {
@@ -530,14 +587,15 @@ button {
 }
 
 .input_wrap input {
-  width: 400px;
+  width: 337px;
   height: 46px;
-  border: 2px solid #19ce60;
+  border: 2px solid #35323214;
   border-radius: 50px;
   padding: 13px 22px;
   font-size: 16px;
   line-height: 20px;
   outline: none;
+  margin-left: 50px;
 }
 
 .input_wrap input::placeholder {
@@ -549,10 +607,11 @@ button {
 .input_wrap img {
   position: absolute;
   top: 50%;
-  right: 15px;
+  right: 35px;
   transform: translateY(-50%);
   width: 19px;
   height: 19px;
+  filter: grayscale(1);
 }
 
 .menu {
@@ -573,25 +632,28 @@ button {
 .shopping_cart {
   width: 50px;
   height: 50px;
+  margin-top: 5px;
 }
 
 .shopping_cart .new_shopping_cart {
   position: absolute;
   width: 15px;
   height: 15px;
-  top: 0;
-  right: 0;
-  background-color: #eb5757;
+  top: 2px;
+  right: 7px;
+  background-color: #4f3b3b;
   border-radius: 50%;
 }
 
 .shopping_cart .new_shopping_cart p {
   position: relative;
-  top: 50%;
+  top: 53%;
   left: 45%;
   transform: translate(-10%, -45%);
   background: transparent;
   font-size: 12px;
+  font-family: AppleSDGothicNeoSB;
+  color: #fff;
 }
 
 .mypage {
@@ -610,6 +672,8 @@ button {
   font-size: 12px;
   line-height: 14px;
   color: #767676;
+  margin-top: 5px;
+  font-family: AppleSDGothicNeoSB;
 }
 
 .mypage img {
@@ -642,7 +706,6 @@ button {
 .flex_wrap {
   max-width: 1440px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
   place-items: center;
   gap: 70px 0px;
   margin: 0 auto;
@@ -708,20 +771,21 @@ button {
   font-size: 18px;
   line-height: 23px;
   color: #767676;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
 }
 
 .product_info .product_name {
   font-size: 36px;
-  line-height: 45px;
-  color: #000000;
-  margin-bottom: 20px;
+  line-height: 43px;
+  color: #3f3a3a;
+  margin-bottom: 35px;
+  font-family: AppleSDGothicNeoSB;
 }
 
 .product_info .price {
   font-size: 36px;
   line-height: 45px;
-  color: #000000;
+  color: #3f3a3a;
   margin-bottom: 138px;
 }
 
@@ -732,6 +796,7 @@ button {
 }
 
 .delivery {
+  display: flex;
   width: 150px;
   height: 20px;
   margin-bottom: 20px;
@@ -746,7 +811,7 @@ button {
 .line {
   width: 600px;
   height: 2px;
-  background: #c4c4c4;
+  background: #ebebeb;
   margin-bottom: 30px;
 }
 
@@ -808,7 +873,8 @@ button {
   font-size: 18px;
   font-weight: 500;
   line-height: 23px;
-  color: #000000;
+  color: #575757;
+  font-family: AppleSDGothicNeoSB;
 }
 
 .sum .total {
@@ -843,8 +909,9 @@ button {
   color: #19ce60;
 }
 
-.btns .btn_buy {
-  width: 416px;
+.btn_buy {
+  max-width: 1280px;
+  width: 100%;
   height: 60px;
   border-radius: 5px;
   background: #19ce60;
@@ -854,7 +921,6 @@ button {
   font-weight: bold;
   line-height: 22px;
   color: #ffffff;
-  margin-right: 44px;
 }
 
 .btns {
@@ -863,8 +929,8 @@ button {
   justify-content: space-between;
 }
 
-.btns .btn_cart {
-  width: 200px;
+.btn_cart {
+  width: 150px;
   height: 60px;
   border-radius: 5px;
   background: #767676;
@@ -874,6 +940,13 @@ button {
   font-weight: bold;
   line-height: 22px;
   color: #ffffff;
+}
+
+.result {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  margin: 20px 0 50px 0;
 }
 
 .desc {
@@ -940,11 +1013,12 @@ button {
 .product {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .product_image {
-  width: 380px;
-  height: 380px;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
   margin-bottom: 16px;
 }
@@ -953,40 +1027,338 @@ button {
   width: 100%;
   height: 100%;
   border-radius: 10px;
-  border: 1px solid #c4c4c4;
 }
-
-.store {
-  margin-bottom: 10px;
+.header .logo .store {
+  margin-bottom: 7px;
 }
 
 .store span {
   font-size: 16px;
   line-height: 22px;
-  color: #767676;
+  color: #858585;
+}
+
+.recently-wrap .store span {
+  font-size: 14px;
 }
 
 .product_name {
   margin-bottom: 10px;
 }
 
+.recently-wrap .product_name {
+  margin-bottom: 6px;
+}
+
 .product_name span {
-  font-size: 18px;
+  font-size: 22px;
   line-height: 22px;
-  color: #000000;
+  color: #3f3a3a;
+  font-family: AppleSDGothicNeoSB;
 }
 
 .price {
-  font-size: 24px;
+  font-size: 26px;
   font-weight: bold;
   line-height: 30px;
-  color: #000000;
+  color: #3f3a3a;
+  letter-spacing: -0.3px;
+}
+
+.recently-wrap .price {
+  font-size: 18px;
 }
 
 .unit {
   font-size: 16px;
   line-height: 20px;
   color: #000000;
+  font-family: AppleSDGothicNeoSB;
+}
+
+.recommend-wrap {
+  display: flex;
+  width: 100%;
+  max-width: 1300px;
+  margin: 30px auto 0 auto;
+  flex-direction: column;
+}
+
+.recommend-inWrap {
+  display: flex;
+  padding-top: 20px;
+  border-top: 1px solid #c1c1c1;
+  box-sizing: border-box;
+}
+
+.recommend-wrap p,
+.recently-wrap p {
+  font-size: 25px;
+  font-weight: 400;
+  margin-bottom: 15px;
+  font-family: AppleSDGothicNeoSB;
+  letter-spacing: -0.5px;
+  color: #3f3a3a;
+}
+
+.recommend-wrap p {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.recommend-wrap .product {
+  width: 150px;
+}
+
+.recommend-wrap .product .product_image {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+}
+
+.recommend-wrap .product {
+  margin-left: 20px;
+}
+
+.in_product {
+  width: 600px;
+  height: 600px;
+  margin-right: 50px;
+}
+
+.recently-wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 32px;
+}
+
+.recently-wrap + div {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+}
+
+.recently-inWrap {
+  width: 60%;
+  display: grid;
+  gap: 0 30px;
+}
+
+.cover {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.bill_wrap {
+  max-width: 750px;
+  margin: 30px auto 0 auto;
+  border-radius: 10px;
+  background: #f9f9f9;
+}
+
+.bill_wrap * {
+  background: transparent;
+}
+
+.bill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 60px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.bill-header p {
+  text-align: center;
+  font-size: 20px;
+  margin: 0 auto;
+  font-family: AppleSDGothicNeoSB;
+}
+
+.bill-header img {
+  margin: 5px 30px 0 0;
+}
+
+.bill-inwrap {
+  width: 100%;
+}
+
+.order-userInfo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 25px 0 20px 0;
+  background: #fff;
+}
+
+.in_wrap {
+  margin: 0 auto;
+  width: 90%;
+}
+
+.order-userInfo .userName {
+  display: flex;
+}
+
+.userName summary {
+  cursor: pointer;
+  font-family: AppleSDGothicNeoSB;
+}
+
+.order-userInfo .userName button {
+  margin: 20px 0 0 auto;
+  font-family: AppleSDGothicNeoSB;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::after {
+  content: "\2193";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 34px;
+  height: 22px;
+  cursor: pointer;
+}
+
+.bgwhite {
+  background: #fff;
+}
+
+.order-contents {
+  margin: 30px 0;
+}
+
+.bill_wrap input[type="text"] {
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid #e5e5e5;
+  width: 100%;
+  height: 50px;
+  padding: 20px 0 10px 0;
+}
+
+input {
+  outline: none;
+  border: 0;
+}
+
+.count input {
+  width: 100%;
+  text-align: center;
+}
+
+.mb30 {
+  margin-bottom: 30px;
+}
+
+.mt30 {
+  margin-top: 30px;
+}
+
+.pdt30 {
+  padding-top: 30px;
+}
+
+.pdb30 {
+  padding-bottom: 30px;
+}
+
+.order-contents p {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 500;
+}
+
+.conheader,
+.bold {
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 700;
+}
+
+.order-contents {
+  display: flex;
+  flex-direction: column;
+}
+
+.conheader {
+  border-bottom: 1px solid #e5e5e5;
+  box-sizing: border-box;
+  padding: 20px 0 18px 37.5px;
+  background: #fff;
+}
+
+.order-inCon {
+  display: flex;
+}
+
+.order-inCon figure {
+  width: 120px;
+  height: 120px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.order-inCon figure img {
+  width: 100%;
+}
+
+.order-contents .item-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.order-contents .item-info p {
+  margin-bottom: 10px;
+}
+
+.order-pay img {
+  margin: 0 auto;
+  display: block;
+  padding: 20px 0;
+}
+
+.order-discount,
+.order-resultPrice {
+  display: flex;
+  align-items: center;
+  height: 60px;
+}
+
+.order-discount .in_wrap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.result-order {
+  background: #19ce60;
+  width: 95%;
+  margin: 0 2.5% 30px 2.5%;
+}
+
+p > span,
+.order-userInfo .userName button {
+  color: #19ce60;
+}
+
+.order-conMap {
+  margin-top: 20px;
+}
+
+.order-conMap > p {
+  margin-bottom: 15px;
 }
 
 @media (max-width: 968px) {
@@ -1023,8 +1395,37 @@ button {
   }
 }
 
-.in_product {
-  width: 600px;
-  height: 600px;
-  margin-right: 50px;
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  margin: 0;
+}
+
+.recently-wrap .product_name span {
+  font-size: 16px;
+}
+
+.recently-wrap .store {
+  margin-bottom: 4px;
+}
+
+.product span {
+  line-height: 1;
+}
+
+.total_info {
+  display: flex;
+  align-items: center;
+}
+
+.logo-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-wrap p {
+  margin-top: 7px;
 }
