@@ -10,6 +10,7 @@ type billProps = {
 
 const CartBill = ({ billConnect, random, total }: billProps) => {
   const cart = useSelector((state: cartSelect) => state.cart);
+
   function toggle() {
     billConnect(false);
   }
@@ -27,7 +28,7 @@ const CartBill = ({ billConnect, random, total }: billProps) => {
       <div className="bill-header">
         <p>주문하기</p>{" "}
         <button onClick={() => toggle()}>
-          <img src="/images/close.png" />
+          <img src="/images/close.png" alt="" />
         </button>
       </div>
       <div className="order-userInfo mb30">
@@ -57,7 +58,7 @@ const CartBill = ({ billConnect, random, total }: billProps) => {
                   <p className="in_wrap">{item.provider}</p>
                   <div className="order-inCon in_wrap">
                     <figure>
-                      <img src={item.image} />
+                      <img src={item.image} alt="" />
                     </figure>
                     <figcaption className="item-info">
                       <p>{item.name}</p>
@@ -73,7 +74,7 @@ const CartBill = ({ billConnect, random, total }: billProps) => {
 
       <div className="order-pay bgwhite mb30">
         <p className="conheader">결제수단</p>
-        <img src="/images/pay.jpg" />
+        <img src="/images/pay.jpg" alt="" />
       </div>
       <div className="order-discount bgwhite mb30">
         <div className="in_wrap">

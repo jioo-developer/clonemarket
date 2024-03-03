@@ -1,4 +1,4 @@
-import React, { ChangeEvent } from "react";
+import React, { ChangeEvent, useCallback } from "react";
 import { useEffect, useState } from "react";
 import CartHeader from "./cart/CartHeader.tsx";
 import CartList from "./cart/CartList.tsx";
@@ -76,7 +76,7 @@ const Cart = () => {
     handleQuantity(target, value);
   };
 
-  function buyitem() {
+  const buyitem = useCallback(() => {
     if (cart.length > 0) {
       return checkLists
         .map((item) => cart.filter((el) => el.id === item))
@@ -84,7 +84,7 @@ const Cart = () => {
     } else {
       return [];
     }
-  }
+  }, [cart, checkLists]);
 
   const isAllChecked =
     cart.length === checkLists.length && checkLists.length !== 0;
@@ -101,16 +101,14 @@ const Cart = () => {
   useEffect(() => {
     if (cart.length > 0) {
       const array: number[] = [];
-      cart.forEach((item) => {
-        array.push(item.id);
-      });
+      cart.forEach((item) => array.push(item.id));
       setCheckLists(array);
     }
   }, [cart]);
 
   useEffect(() => {
     buyitem();
-  }, [checkLists]);
+  }, [checkLists, buyitem]);
 
   return (
     <>

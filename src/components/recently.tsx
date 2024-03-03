@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import convertPrice from "../module/convertPrice.ts";
 import { productType } from "../interfaceModule";
 import { useMyContext } from "../module/MyContext.tsx";
@@ -12,6 +12,7 @@ const Recently = ({ recently }: recentlyProps) => {
   function detailDirect(id: number) {
     navigate(`/product/${id}`);
   }
+
   return (
     <div className="recently-wrap">
       {recently.length > 0 ? <p>최근 본 상품</p> : null}

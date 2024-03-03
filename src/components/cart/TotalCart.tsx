@@ -22,6 +22,7 @@ const TotalCart = ({
 }: TotalCartProps) => {
   const [initialPrice, setInitial] = useState(0);
   const delivery = 3000;
+
   useEffect(() => {
     if (buyitem().length > 0) {
       const sum = buyitem().map((item) => item.price * item.quantity);

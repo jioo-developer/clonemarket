@@ -13,6 +13,7 @@ const Detail = ({ products }: { products: productType[] }) => {
   const [count, setCount] = useState(1);
   const cart = useSelector((state: cartSelect) => state.cart);
   const pageId = useParams().id;
+
   const initialData: productType = {
     id: 0,
     name: "",
@@ -23,6 +24,7 @@ const Detail = ({ products }: { products: productType[] }) => {
     quick: false,
     class: "",
   };
+
   const [items, setItem] = useState<productType>(initialData);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ const Detail = ({ products }: { products: productType[] }) => {
         navigate("/");
       }
     }
-  }, [products, pageId]);
+  }, [products, pageId, navigate]);
 
   useEffect(() => {
     if (items.name !== "") {
@@ -189,12 +191,7 @@ const Detail = ({ products }: { products: productType[] }) => {
             </div>
 
             <div className="btns">
-              <button
-                className="btn_buy"
-                onClick={() => {
-                  handleCart(items.id);
-                }}
-              >
+              <button className="btn_buy" onClick={() => handleCart(items.id)}>
                 장바구니
               </button>
             </div>
