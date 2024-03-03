@@ -13,6 +13,7 @@ const Header = ({ productConnect, products }: detailProps) => {
   const cart = useSelector((state: cartSelect) => state.cart);
   const [text, setText] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+
   function findItem(e: React.KeyboardEvent<HTMLInputElement> | string) {
     const result = products.filter((item) => item.name.includes(text));
     if (typeof e === "object" && e.key === "Enter" && text !== "") {
@@ -30,6 +31,7 @@ const Header = ({ productConnect, products }: detailProps) => {
       }
     });
   }
+
   return (
     <header className="header">
       <div className="logo-wrap">

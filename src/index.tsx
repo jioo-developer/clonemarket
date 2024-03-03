@@ -4,15 +4,10 @@ import App from "./App.tsx";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { createStore, applyMiddleware, Reducer } from "redux";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore } from "redux";
 import reducer from "./module/reducer.ts";
-import logger from "redux-logger";
 
-const store = createStore(
-  reducer as Reducer,
-  composeWithDevTools(applyMiddleware(logger))
-);
+const store = createStore(reducer);
 
 const rootEl = document.getElementById("root");
 if (rootEl) {

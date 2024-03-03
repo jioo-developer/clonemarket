@@ -10,9 +10,11 @@ type homeProps = {
 const Product = ({ products }: homeProps) => {
   const [recently, setRecently] = useState<productType[]>([]);
   const { navigate } = useMyContext();
+
   function detailDirect(id: number) {
     navigate(`/product/${id}`);
   }
+
   const loadData = localStorage.getItem("recently");
 
   useEffect(() => {
@@ -21,11 +23,18 @@ const Product = ({ products }: homeProps) => {
       const resultData = parseData
         .map((item) => products.filter((el) => el.name === item))
         .flat();
-      const set = new Set(resultData);
-      const res = Array.from(set);
+      const res = resultData.filter((value, idx, arr) => {
+        // value = 각각의 값 , idx = 순서 arr = 순회대상
+        return (
+          arr.findIndex((item) => {
+            return item.name === value.name;
+          }) === idx
+        );
+      });
       setRecently(res);
     }
   }, [loadData, products]);
+
   return (
     <main className="flex_wrap">
       <Recently recently={recently} />
