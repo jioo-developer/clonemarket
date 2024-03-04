@@ -1,7 +1,7 @@
 // MyContext.ts
 import React, { ReactNode, createContext, useContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
-import reducer, { initialState } from "./reducer";
+import reducer, { initialState } from "./reducer.ts";
 import { Action, cartSelect } from "../interfaceModule";
 
 type MyContextProps = {

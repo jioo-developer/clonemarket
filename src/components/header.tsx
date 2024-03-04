@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { ChangeEvent, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { productType } from "../interfaceModule";
-import { useMyContext } from "../module/MyContext";
+import { useMyContext } from "../module/MyContext.tsx";
+
 type detailProps = {
   productConnect: (params: productType[]) => void;
   products: productType[];
