@@ -1,16 +1,13 @@
-import { productType } from "../interfaceModule";
+import { Action, cartSelect, productType } from "../interfaceModule";
 
-type initialStateType = {
-  cart: productType[];
-};
-
-const initialState: initialStateType = {
+export const initialState: cartSelect = {
   cart: [],
 };
 
 const addCart = "addCart";
 const quantity = "quantity";
 const remove = "remove";
+
 export const cartAdd = (data: productType | productType[]) => ({
   type: addCart,
   data,
@@ -26,7 +23,10 @@ export const removeItem = (data: productType[]) => ({
   data,
 });
 
-export default function reducer(state = initialState, action: any) {
+export default function reducer(
+  state = initialState,
+  action: Action
+): cartSelect {
   switch (action.type) {
     case addCart:
       const result = Array.isArray(action.data)

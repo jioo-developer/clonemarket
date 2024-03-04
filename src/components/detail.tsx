@@ -2,16 +2,14 @@ import React, { useEffect, useState } from "react";
 import convertPrice from "../module/convertPrice.ts";
 import { useMyContext } from "../module/MyContext.tsx";
 import { calculator, cartAdd } from "../module/reducer.ts";
-import { useSelector } from "react-redux";
 import Recommend from "./recommend.tsx";
 import { productType } from "../interfaceModule";
-import { cartSelect } from "../interfaceModule";
 import { useParams } from "react-router-dom";
 
 const Detail = ({ products }: { products: productType[] }) => {
-  const { dispatch, navigate } = useMyContext();
+  const { dispatch, navigate, cartData } = useMyContext();
+  const cart = cartData.cart;
   const [count, setCount] = useState(1);
-  const cart = useSelector((state: cartSelect) => state.cart);
   const pageId = useParams().id;
 
   const initialData: productType = {

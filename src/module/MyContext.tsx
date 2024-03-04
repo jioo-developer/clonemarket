@@ -1,41 +1,32 @@
 // MyContext.ts
-import React, { ReactNode, createContext, useContext } from "react";
-import { useDispatch } from "react-redux";
+import React, { ReactNode, createContext, useContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
+import reducer, { initialState } from "./reducer";
+import { Action, cartSelect } from "../interfaceModule";
 
 type MyContextProps = {
   navigate: (params: string, state?: any) => void;
-  dispatch: (params: any) => void;
-};
-
-type MyContextProviderProps = {
-  children: ReactNode;
+  dispatch: React.Dispatch<Action>;
+  cartData: cartSelect;
 };
 
 const MyContext = createContext<MyContextProps>({
   navigate: () => {},
   dispatch: () => {},
+  cartData: initialState,
 });
 
-export const MyContextProvider = ({
-  children,
-}: MyContextProviderProps): JSX.Element => {
+export const MyContextProvider = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const [cartData, dispatch] = useReducer(reducer, initialState);
 
   return (
-    <MyContext.Provider value={{ navigate, dispatch }}>
+    <MyContext.Provider value={{ navigate, dispatch, cartData }}>
       {children}
     </MyContext.Provider>
   );
 };
 
 export const useMyContext = (): MyContextProps => {
-  const context = useContext(MyContext);
-
-  if (!context) {
-    throw new Error("useMyContext must be used within a MyContextProvider");
-  }
-
-  return context;
+  return useContext(MyContext);
 };

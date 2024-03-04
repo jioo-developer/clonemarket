@@ -1,7 +1,6 @@
 import React from "react";
-import { cartSelect } from "../../interfaceModule";
-import { useSelector } from "react-redux";
 import convertPrice from "../../module/convertPrice.ts";
+import { useMyContext } from "../../module/MyContext.tsx";
 type billProps = {
   billConnect: (value: boolean) => void;
   random: number;
@@ -9,7 +8,8 @@ type billProps = {
 };
 
 const CartBill = ({ billConnect, random, total }: billProps) => {
-  const cart = useSelector((state: cartSelect) => state.cart);
+  const { cartData } = useMyContext();
+  const cart = cartData.cart;
 
   function toggle() {
     billConnect(false);

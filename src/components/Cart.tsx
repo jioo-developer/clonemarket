@@ -6,19 +6,16 @@ import TotalCart from "./cart/TotalCart.tsx";
 import CartCoupon from "./cart/CartCoupon.tsx";
 import convertPrice from "../module/convertPrice.ts";
 import { useMyContext } from "../module/MyContext.tsx";
-import { useSelector } from "react-redux";
 import { calculator, removeItem } from "../module/reducer.ts";
 import { productType } from "../interfaceModule";
-import { cartSelect } from "../interfaceModule";
 import CartBill from "./cart/CartBill.tsx";
 const Cart = () => {
   const [total, setTotal] = useState<number>(0);
   const [checkLists, setCheckLists] = useState<number[]>([]);
   const [bill, setBill] = useState<boolean>(false);
   const [randomNum, setRandom] = useState(0);
-  const { dispatch } = useMyContext();
-  const cart = useSelector((state: cartSelect) => state.cart);
-
+  const { cartData, dispatch } = useMyContext();
+  const cart = cartData.cart;
   const handleQuantity = (id: number, quantity: number) => {
     const found = cart.filter((el) => el.id === id)[0];
     const idx = cart.indexOf(found);
