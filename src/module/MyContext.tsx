@@ -1,34 +1,31 @@
 // MyContext.ts
-
-import React, { ReactNode, createContext, useContext } from "react";
-import { useDispatch } from "react-redux";
+import React, { ReactNode, createContext, useContext, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
+import reducer, { initialState } from "./reducer.ts";
+import { Action, cartSelect } from "../interfaceModule";
 
-// provider 생성 ↓
-export const MyContextProvider = ({ children }: { children: ReactNode }) => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
-
-  return (
-    <MyContext.Provider value={{ navigate, dispatch }}>
-      {/* 중괄호 두번이 관습 */}
-      {children}
-    </MyContext.Provider>
-  );
-};
-
-export type MyContextProps = {
-  navigate: (params: string) => void;
-  dispatch: (params: any) => void;
+type MyContextProps = {
+  navigate: (params: string, state?: any) => void;
+  dispatch: React.Dispatch<Action>;
+  cartData: cartSelect;
 };
 
 const MyContext = createContext<MyContextProps>({
   navigate: () => {},
   dispatch: () => {},
+  cartData: initialState,
 });
-// provider value에 들어가는 것들의 initiail 기본값
 
-// create 생성 ↑
+export const MyContextProvider = ({ children }: { children: ReactNode }) => {
+  const navigate = useNavigate();
+  const [cartData, dispatch] = useReducer(reducer, initialState);
+
+  return (
+    <MyContext.Provider value={{ navigate, dispatch, cartData }}>
+      {children}
+    </MyContext.Provider>
+  );
+};
 
 export const useMyContext = (): MyContextProps => {
   return useContext(MyContext);

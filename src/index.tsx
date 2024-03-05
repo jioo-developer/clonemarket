@@ -3,11 +3,6 @@ import ReactDOM from "react-dom/client";
 import App from "./App.tsx";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
-import { Provider } from "react-redux";
-import { createStore } from "redux";
-import reducer from "./module/reducer.ts";
-
-const store = createStore(reducer);
 
 const rootEl = document.getElementById("root");
 if (rootEl) {
@@ -15,9 +10,7 @@ if (rootEl) {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <Provider store={store}>
-          <App />
-        </Provider>
+        <App />
       </BrowserRouter>
     </React.StrictMode>
   );
@@ -29,9 +22,7 @@ if (rootEl) {
   root.render(
     <React.StrictMode>
       <BrowserRouter>
-        <Provider store={store}>
-          <App />
-        </Provider>
+        <App />
       </BrowserRouter>
     </React.StrictMode>
   );

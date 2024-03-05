@@ -12,3 +12,7 @@ export interface productType {
 export interface cartSelect {
   cart: productType[];
 }
+export interface Action {
+  type: string;
+  data?: any;
+}

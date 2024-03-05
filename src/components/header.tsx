@@ -1,16 +1,17 @@
 import axios from "axios";
 import React, { ChangeEvent, useRef, useState } from "react";
-import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { productType } from "../interfaceModule";
-import { cartSelect } from "../interfaceModule";
+import { useMyContext } from "../module/MyContext.tsx";
+
 type detailProps = {
   productConnect: (params: productType[]) => void;
   products: productType[];
 };
 
 const Header = ({ productConnect, products }: detailProps) => {
-  const cart = useSelector((state: cartSelect) => state.cart);
+  const { cartData } = useMyContext();
+  const cart = cartData.cart;
   const [text, setText] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
