@@ -1,8 +1,8 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { productType } from "../../interfaceModule";
+import convertPrice from "../../module/convertPrice.ts";
 type cartListProps = {
   item: productType;
-  convertPrice: (price: number) => string;
   handleRemove: (productId: number) => void;
   handlerCheckList: (checked: boolean, productId: number) => void;
   checkLists: number[];
@@ -12,13 +12,15 @@ type cartListProps = {
 
 const CartList = ({
   item,
-  convertPrice,
   handleRemove,
   handlerCheckList,
   checkLists,
   count,
   quantityConnect,
 }: cartListProps) => {
+  const price = useMemo(() => {
+    return convertPrice(item.price);
+  }, [item]);
   return (
     <section className="cart_product_list">
       <input
@@ -37,7 +39,7 @@ const CartList = ({
         <div className="cart_product_info">
           <p className="seller_store">{item.provider}</p>
           <p className="product_name">{item.name}</p>
-          <p className="price">{convertPrice(item.price)}원</p>
+          <p className="price">{price}원</p>
           <p className="delivery">택배배송</p>
         </div>
       </div>

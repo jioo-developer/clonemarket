@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import convertPrice from "../module/convertPrice.ts";
 import { useMyContext } from "../module/MyContext.tsx";
 import { calculator, cartAdd } from "../module/reducer.ts";
@@ -24,6 +24,10 @@ const Detail = ({ products }: { products: productType[] }) => {
   };
 
   const [items, setItem] = useState<productType>(initialData);
+
+  const price = useMemo(() => {
+    return convertPrice(items.price);
+  }, [items]);
 
   useEffect(() => {
     if (products.length > 0 && pageId) {
@@ -111,7 +115,7 @@ const Detail = ({ products }: { products: productType[] }) => {
               <p className="seller_store">{items.provider}</p>
               <p className="product_name">{items.name}</p>
               <span className="price">
-                {convertPrice(items.price)}
+                {price}
                 <span className="unit">원</span>
               </span>
             </div>

@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useEffect, useState } from "react";
 import { productType } from "../../interfaceModule";
+import convertPrice from "../../module/convertPrice.ts";
 type TotalCartProps = {
   total: number;
   cart: productType[];
-  convertPrice: (price: number) => string;
   randomNum: number;
   buyitem: () => productType[];
   totalConnect: (value: number) => void;
@@ -14,7 +14,6 @@ type TotalCartProps = {
 const TotalCart = ({
   total,
   cart,
-  convertPrice,
   randomNum,
   buyitem,
   totalConnect,
@@ -22,6 +21,12 @@ const TotalCart = ({
 }: TotalCartProps) => {
   const [initialPrice, setInitial] = useState(0);
   const delivery = 3000;
+
+  const price = useMemo(() => {
+    if (initialPrice > 0) {
+      return convertPrice(initialPrice);
+    }
+  }, [initialPrice]);
 
   useEffect(() => {
     if (buyitem().length > 0) {
@@ -58,9 +63,7 @@ const TotalCart = ({
       <div className="total_price">
         <p className="cart_product_total_price">총 상품금액</p>
         <p className="cart_product_price">
-          {isNaN(parseInt(convertPrice(initialPrice)))
-            ? ""
-            : convertPrice(initialPrice)}
+          {isNaN(parseInt(price as string)) ? "" : price}
         </p>
       </div>
       <div className="pay_minus">
