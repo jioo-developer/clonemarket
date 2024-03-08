@@ -1,10 +1,10 @@
 import React, { useEffect, useMemo, useState } from "react";
-import convertPrice from "../module/convertPrice.ts";
 import { useMyContext } from "../module/MyContext.tsx";
 import { calculator, cartAdd } from "../module/reducer.ts";
 import Recommend from "./recommend.tsx";
 import { productType } from "../interfaceModule";
 import { useParams } from "react-router-dom";
+import convertPrice from "../module/convertPrice.ts";
 
 const Detail = ({ products }: { products: productType[] }) => {
   const { dispatch, navigate, cartData } = useMyContext();
@@ -27,6 +27,10 @@ const Detail = ({ products }: { products: productType[] }) => {
 
   const price = useMemo(() => {
     return convertPrice(items.price);
+  }, [items]);
+
+  const priceCount = useMemo(() => {
+    return convertPrice(items.price * count);
   }, [items]);
 
   useEffect(() => {
@@ -183,9 +187,7 @@ const Detail = ({ products }: { products: productType[] }) => {
                   </span>
                 </span>
                 <span className="total_price">
-                  {isNaN(parseInt(convertPrice(items.price * count)))
-                    ? ""
-                    : convertPrice(items.price * count)}
+                  {isNaN(parseInt(priceCount)) ? "" : priceCount}
                   <span className="total_unit">원</span>
                 </span>
               </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import convertPrice from "../module/convertPrice.ts";
 import { productType } from "../interfaceModule";
 import { useMyContext } from "../module/MyContext.tsx";
 
@@ -8,7 +7,7 @@ type recentlyProps = {
 };
 
 const Recently = ({ recently }: recentlyProps) => {
-  const { navigate } = useMyContext();
+  const { navigate, price } = useMyContext();
   function detailDirect(id: number) {
     navigate(`/product/${id}`);
   }
@@ -44,7 +43,7 @@ const Recently = ({ recently }: recentlyProps) => {
                   </div>
 
                   <div className="product_price">
-                    <span className="price">{convertPrice(product.price)}</span>
+                    <span className="price">{price(product.price)}</span>
                     <span className="unit">원</span>
                   </div>
                 </div>

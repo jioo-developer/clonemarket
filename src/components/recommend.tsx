@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
-import convertPrice from "../module/convertPrice.ts";
 import { productType } from "../interfaceModule";
 import { Link } from "react-router-dom";
+import { useMyContext } from "../module/MyContext.tsx";
 type RecommendProps = {
   products: productType[];
   type: productType;
 };
 
 const Recommend = ({ products, type }: RecommendProps) => {
+  const { price } = useMyContext();
   const [recommend, setRecommend] = useState<productType[]>([]);
   useEffect(() => {
     if (products.length > 0) {
@@ -42,9 +43,7 @@ const Recommend = ({ products, type }: RecommendProps) => {
                     </div>
 
                     <div className="product_price">
-                      <span className="price">
-                        {convertPrice(product.price)}
-                      </span>
+                      <span className="price">{price(product.price)}</span>
                       <span className="unit">원</span>
                     </div>
                   </div>

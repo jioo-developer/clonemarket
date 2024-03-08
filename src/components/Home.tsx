@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useMyContext } from "../module/MyContext.tsx";
 import { productType } from "../interfaceModule";
 import Recently from "../components/recently.tsx";
-import convertPrice from "../module/convertPrice.ts";
 type homeProps = {
   products: productType[];
 };
@@ -11,11 +10,11 @@ const Product = ({ products }: homeProps) => {
   const [recently, setRecently] = useState<productType[]>([]);
   const loadData = localStorage.getItem("recently");
   const parseData: string[] | [] = JSON.parse(loadData || "[]");
-  const { navigate } = useMyContext();
-
+  const { navigate, price } = useMyContext();
   function detailDirect(id: number) {
     navigate(`/product/${id}`);
   }
+
   useEffect(() => {
     if (products.length > 0 && parseData.length > 0) {
       const resultData = parseData
@@ -57,7 +56,7 @@ const Product = ({ products }: homeProps) => {
                   </div>
 
                   <div className="product_price">
-                    <span className="price">{convertPrice(product.price)}</span>
+                    <span className="price">{price(product.price)}</span>
                     <span className="unit">원</span>
                   </div>
                 </div>

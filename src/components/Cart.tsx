@@ -15,6 +15,7 @@ const Cart = () => {
   const [randomNum, setRandom] = useState(0);
   const { cartData, dispatch } = useMyContext();
   const cart = cartData.cart;
+
   const handleQuantity = (id: number, quantity: number) => {
     const found = cart.filter((el) => el.id === id)[0];
     const idx = cart.indexOf(found);

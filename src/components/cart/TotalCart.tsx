@@ -1,7 +1,7 @@
 import React, { useMemo } from "react";
 import { useEffect, useState } from "react";
 import { productType } from "../../interfaceModule";
-import convertPrice from "../../module/convertPrice.ts";
+import { useMyContext } from "../../module/MyContext.tsx";
 type TotalCartProps = {
   total: number;
   cart: productType[];
@@ -21,12 +21,7 @@ const TotalCart = ({
 }: TotalCartProps) => {
   const [initialPrice, setInitial] = useState(0);
   const delivery = 3000;
-
-  const price = useMemo(() => {
-    if (initialPrice > 0) {
-      return convertPrice(initialPrice);
-    }
-  }, [initialPrice]);
+  const { price } = useMyContext();
 
   useEffect(() => {
     if (buyitem().length > 0) {
@@ -63,7 +58,7 @@ const TotalCart = ({
       <div className="total_price">
         <p className="cart_product_total_price">총 상품금액</p>
         <p className="cart_product_price">
-          {isNaN(parseInt(price as string)) ? "" : price}
+          {isNaN(parseInt(price(initialPrice))) ? "" : price(initialPrice)}
         </p>
       </div>
       <div className="pay_minus">
@@ -86,9 +81,9 @@ const TotalCart = ({
       <div className="payment">
         <p className="cart_prouct_payment">결제 예정 금액</p>
         <p className="cart_prouct_payment_price">
-          {isNaN(parseInt(convertPrice(total)))
+          {isNaN(parseInt(price(total)))
             ? ""
-            : convertPrice(Math.round(total / 10) * 10)}
+            : price(Math.round(total / 10) * 10)}
         </p>
       </div>
     </div>
