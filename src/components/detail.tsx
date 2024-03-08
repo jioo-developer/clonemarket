@@ -152,7 +152,6 @@ const Detail = ({ products }: { products: productType[] }) => {
                   type="number"
                   step="0.01"
                   onChange={(e) => setCount(parseInt(e.target.value))}
-                  defaultValue={count}
                   value={count}
                 />
               </div>

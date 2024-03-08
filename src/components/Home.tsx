@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from "react";
-import convertPrice from "../module/convertPrice.ts";
 import { useMyContext } from "../module/MyContext.tsx";
 import { productType } from "../interfaceModule";
 import Recently from "../components/recently.tsx";
+import convertPrice from "../module/convertPrice.ts";
 type homeProps = {
   products: productType[];
 };
 
 const Product = ({ products }: homeProps) => {
   const [recently, setRecently] = useState<productType[]>([]);
+  const loadData = localStorage.getItem("recently");
+  const parseData: string[] | [] = JSON.parse(loadData || "[]");
   const { navigate } = useMyContext();
 
   function detailDirect(id: number) {
     navigate(`/product/${id}`);
   }
-
-  const loadData = localStorage.getItem("recently");
-
   useEffect(() => {
-    if (loadData) {
-      const parseData: string[] = JSON.parse(loadData);
+    if (products.length > 0 && parseData.length > 0) {
       const resultData = parseData
         .map((item) => products.filter((el) => el.name === item))
         .flat();
@@ -33,7 +31,7 @@ const Product = ({ products }: homeProps) => {
       });
       setRecently(res);
     }
-  }, [loadData, products]);
+  }, [products]);
 
   return (
     <main className="flex_wrap">

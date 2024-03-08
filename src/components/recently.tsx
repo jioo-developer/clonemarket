@@ -56,4 +56,4 @@ const Recently = ({ recently }: recentlyProps) => {
   );
 };
 
-export default Recently;
+export default React.memo(Recently);
