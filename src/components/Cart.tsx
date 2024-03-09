@@ -4,7 +4,6 @@ import CartHeader from "./cart/CartHeader.tsx";
 import CartList from "./cart/CartList.tsx";
 import TotalCart from "./cart/TotalCart.tsx";
 import CartCoupon from "./cart/CartCoupon.tsx";
-import convertPrice from "../module/convertPrice.ts";
 import { useMyContext } from "../module/MyContext.tsx";
 import { calculator, removeItem } from "../module/reducer.ts";
 import { productType } from "../interfaceModule";
@@ -16,6 +15,7 @@ const Cart = () => {
   const [randomNum, setRandom] = useState(0);
   const { cartData, dispatch } = useMyContext();
   const cart = cartData.cart;
+
   const handleQuantity = (id: number, quantity: number) => {
     const found = cart.filter((el) => el.id === id)[0];
     const idx = cart.indexOf(found);
@@ -118,7 +118,6 @@ const Cart = () => {
               key={item.id}
               item={item}
               count={item.quantity}
-              convertPrice={convertPrice}
               handlerCheckList={handlerCheckList}
               handleRemove={handleRemove}
               checkLists={checkLists}
@@ -139,7 +138,6 @@ const Cart = () => {
             cart={cart}
             total={total}
             totalConnect={totalConnect}
-            convertPrice={convertPrice}
             randomNum={randomNum}
             buyitem={buyitem}
             checkLists={checkLists}

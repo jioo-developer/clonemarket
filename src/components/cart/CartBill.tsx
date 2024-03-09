@@ -1,5 +1,4 @@
 import React from "react";
-import convertPrice from "../../module/convertPrice.ts";
 import { useMyContext } from "../../module/MyContext.tsx";
 type billProps = {
   billConnect: (value: boolean) => void;
@@ -8,7 +7,7 @@ type billProps = {
 };
 
 const CartBill = ({ billConnect, random, total }: billProps) => {
-  const { cartData } = useMyContext();
+  const { cartData, price } = useMyContext();
   const cart = cartData.cart;
 
   function toggle() {
@@ -63,7 +62,7 @@ const CartBill = ({ billConnect, random, total }: billProps) => {
                     <figcaption className="item-info">
                       <p>{item.name}</p>
                       <p>{item.quantity}개</p>
-                      <p>{convertPrice(item.price * item.quantity)}원</p>
+                      <p>{price(item.price * item.quantity)}원</p>
                     </figcaption>
                   </div>
                 </div>
@@ -88,7 +87,7 @@ const CartBill = ({ billConnect, random, total }: billProps) => {
         <p className="in_wrap bold">
           최종 결제금액{" "}
           <span style={{ marginLeft: 7 }}>
-            {convertPrice(Math.round(total / 10) * 10)}
+            {price(Math.round(total / 10) * 10)}
           </span>
           &nbsp;원
         </p>

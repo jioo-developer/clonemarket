@@ -1,24 +1,24 @@
 import React from "react";
 import { productType } from "../../interfaceModule";
+import { useMyContext } from "../../module/MyContext.tsx";
 type cartListProps = {
   item: productType;
-  convertPrice: (price: number) => string;
   handleRemove: (productId: number) => void;
   handlerCheckList: (checked: boolean, productId: number) => void;
   checkLists: number[];
-  quantityConnect: (target: number, value: number) => void;
   count: number;
+  quantityConnect: (target: number, value: number) => void;
 };
 
 const CartList = ({
   item,
-  convertPrice,
   handleRemove,
   handlerCheckList,
   checkLists,
   count,
   quantityConnect,
 }: cartListProps) => {
+  const { price } = useMyContext();
   return (
     <section className="cart_product_list">
       <input
@@ -37,7 +37,7 @@ const CartList = ({
         <div className="cart_product_info">
           <p className="seller_store">{item.provider}</p>
           <p className="product_name">{item.name}</p>
-          <p className="price">{convertPrice(item.price)}원</p>
+          <p className="price">{price(item.price)}원</p>
           <p className="delivery">택배배송</p>
         </div>
       </div>

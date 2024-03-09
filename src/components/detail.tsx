@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react";
-import convertPrice from "../module/convertPrice.ts";
+import React, { useEffect, useMemo, useState } from "react";
 import { useMyContext } from "../module/MyContext.tsx";
 import { calculator, cartAdd } from "../module/reducer.ts";
 import Recommend from "./recommend.tsx";
 import { productType } from "../interfaceModule";
 import { useParams } from "react-router-dom";
+import convertPrice from "../module/convertPrice.ts";
 
 const Detail = ({ products }: { products: productType[] }) => {
   const { dispatch, navigate, cartData } = useMyContext();
@@ -24,6 +24,14 @@ const Detail = ({ products }: { products: productType[] }) => {
   };
 
   const [items, setItem] = useState<productType>(initialData);
+
+  const price = useMemo(() => {
+    return convertPrice(items.price);
+  }, [items]);
+
+  const priceCount = useMemo(() => {
+    return convertPrice(items.price * count);
+  }, [items]);
 
   useEffect(() => {
     if (products.length > 0 && pageId) {
@@ -111,7 +119,7 @@ const Detail = ({ products }: { products: productType[] }) => {
               <p className="seller_store">{items.provider}</p>
               <p className="product_name">{items.name}</p>
               <span className="price">
-                {convertPrice(items.price)}
+                {price}
                 <span className="unit">원</span>
               </span>
             </div>
@@ -152,7 +160,6 @@ const Detail = ({ products }: { products: productType[] }) => {
                   type="number"
                   step="0.01"
                   onChange={(e) => setCount(parseInt(e.target.value))}
-                  defaultValue={count}
                   value={count}
                 />
               </div>
@@ -180,9 +187,7 @@ const Detail = ({ products }: { products: productType[] }) => {
                   </span>
                 </span>
                 <span className="total_price">
-                  {isNaN(parseInt(convertPrice(items.price * count)))
-                    ? ""
-                    : convertPrice(items.price * count)}
+                  {isNaN(parseInt(priceCount)) ? "" : priceCount}
                   <span className="total_unit">원</span>
                 </span>
               </div>
