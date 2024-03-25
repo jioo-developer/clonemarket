@@ -108,7 +108,7 @@ const Cart = () => {
   }, [checkLists, buyitem]);
 
   return (
-    <>
+    <div className="cart_wrap">
       <CartHeader AllChecked={AllChecked} isAllChecked={isAllChecked} />
       {cart.length > 0 ? (
         cart.map((item: productType) => {
@@ -167,7 +167,7 @@ const Cart = () => {
           />
         </div>
       ) : null}
-    </>
+    </div>
   );
 };
 

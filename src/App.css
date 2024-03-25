@@ -298,6 +298,16 @@ button {
   align-items: center;
 }
 
+.totals .delivery {
+  margin-bottom: 0;
+}
+
+@media all and (max-width: 960px) {
+  .totals {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 .total_price .cart_product_total_price,
 .sale .cart_product_sale,
 .delivery .cart_product_delivery {
@@ -423,29 +433,27 @@ button {
   }
 
   .cart_product_list {
-    height: 300px;
+    height: auto;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 0 10px;
   }
   .cart_product_wrap {
-    padding: 15px;
+    padding: 15px 0;
+    margin-top: 20px;
   }
 
   .cart_product_list input[type="checkbox"] {
-    position: absolute;
-    top: 15px;
-    left: 20px;
+    margin-right: 10px;
   }
 
   .cart_product_list .cart_product_price {
-    width: 80%;
+    margin-bottom: 20px;
   }
 
   .cart_product_count {
-    left: 75px;
-    margin-bottom: 10px;
+    margin: 0 20px 10px 0;
   }
 
   .cart_product_price .btn_submit {
@@ -459,8 +467,27 @@ button {
   .total {
     grid-template-rows: repeat(2, 1fr);
     grid-template-columns: repeat(2, 1fr);
-    height: 175px;
-    margin-bottom: 20px;
+  }
+}
+
+@media all and (max-width: 700px) {
+  .cart_product_list {
+    flex-direction: column;
+  }
+
+  .cart_product_count {
+    margin-right: 0;
+  }
+
+  .cart_product_list input[type="checkbox"] {
+    top: 30%;
+    left: 10%;
+    position: absolute;
+  }
+
+  .btn_cart,
+  .cart_product_price {
+    width: 100% !important;
   }
 }
 
@@ -713,18 +740,6 @@ button {
   padding-bottom: 100px;
 }
 
-@media (max-width: 1440px) {
-  .flex_wrap {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .flex_wrap {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
 @media (max-width: 360px) {
   .filter p {
     font-size: 12px;
@@ -734,15 +749,28 @@ button {
 .main {
   max-width: 1440px;
   margin: 0 auto;
+  width: 95%;
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 80px;
 }
 
+@media all and (max-width: 960px) {
+  .main {
+    flex-direction: column;
+  }
+}
+
 .product {
   display: flex;
   flex-direction: column;
+}
+
+@media (max-width: 960px) {
+  .product {
+    align-items: center;
+  }
 }
 
 .product_img {
@@ -757,6 +785,12 @@ button {
   border-radius: 10px;
 }
 
+@media all and (max-width: 960px) {
+  .product_img img {
+    height: auto;
+  }
+}
+
 .product_info {
   width: 80%;
   display: flex;
@@ -765,6 +799,12 @@ button {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+@media all and (max-width: 960px) {
+  .product_info {
+    margin-top: 20px;
+  }
 }
 
 .product_info .seller_store {
@@ -789,6 +829,12 @@ button {
   margin-bottom: 138px;
 }
 
+@media all and (max-width: 960px) {
+  .product_info .price {
+    margin-bottom: 50px;
+  }
+}
+
 .product_info .unit {
   font-size: 18px;
   line-height: 23px;
@@ -809,7 +855,7 @@ button {
 }
 
 .line {
-  width: 600px;
+  width: 100%;
   height: 2px;
   background: #ebebeb;
   margin-bottom: 30px;
@@ -898,6 +944,8 @@ button {
 }
 
 .sum .total_price {
+  display: flex;
+  align-items: center;
   font-size: 36px;
   line-height: 45px;
   color: #19ce60;
@@ -951,45 +999,6 @@ button {
 
 .desc {
   margin-top: 140px;
-}
-
-@media (max-width: 1440px) {
-  .main {
-    flex-direction: column;
-  }
-
-  .product {
-    margin: 0;
-    padding: 20px;
-    padding-bottom: 0;
-  }
-
-  .sum .total_price {
-    font-size: 24px;
-  }
-
-  .sum .sum_price {
-    margin-right: 24px;
-  }
-
-  .btn {
-    justify-content: center;
-  }
-  .btns .btn_buy {
-    width: 70%;
-  }
-
-  .btns .btn_cart {
-    width: 30%;
-  }
-
-  .line {
-    width: 80%;
-  }
-
-  .product_info .price {
-    margin-bottom: 50px;
-  }
 }
 
 @media (max-width: 380px) {
@@ -1079,7 +1088,7 @@ button {
 .recommend-wrap {
   display: flex;
   width: 100%;
-  max-width: 1300px;
+  max-width: 1440px;
   margin: 30px auto 0 auto;
   flex-direction: column;
 }
@@ -1089,6 +1098,22 @@ button {
   padding-top: 20px;
   border-top: 1px solid #c1c1c1;
   box-sizing: border-box;
+}
+
+@media all and (max-width: 960px) {
+  .recommend-wrap .recommend-inWrap {
+    flex-wrap: wrap;
+  }
+
+  .recommend-wrap .recommend-inWrap a {
+    width: 49%;
+    margin-bottom: 30px;
+  }
+
+  .recommend-wrap .product {
+    width: 100% !important;
+    height: 100% !important;
+  }
 }
 
 .recommend-wrap p,
@@ -1121,16 +1146,28 @@ button {
 }
 
 .in_product {
-  width: 600px;
-  height: 600px;
+  width: 50%;
+  height: 680px;
   margin-right: 50px;
+}
+
+@media all and (max-width: 960px) {
+  .in_product {
+    width: 90%;
+    height: auto;
+    margin-right: 0;
+  }
+}
+
+.in_product:last-child {
+  margin-right: 0;
 }
 
 .recently-wrap {
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 32px;
+  margin: 32px auto 0 auto;
 }
 
 .recently-wrap + div {
@@ -1140,12 +1177,49 @@ button {
   gap: 50px;
 }
 
+@media all and (max-width: 1440px) {
+  .recently-wrap,
+  .recently-wrap + div {
+    width: 90%;
+  }
+}
+
+@media all and (max-width: 960px) {
+  .recently-wrap + div,
+  .recently-wrap {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+@media all and (max-width: 780px) {
+  .recently-wrap + div,
+  .recently-inWrap {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .recently-inWrap {
+    gap: 24px !important;
+  }
+  .recently-wrap {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+  }
+}
+
+@media all and (max-width: 500px) {
+  .recently-wrap,
+  .recently-inWrap,
+  .recently-wrap + div {
+    grid-template-columns: repeat(1, 1fr) !important;
+  }
+}
+
 .recently-inWrap {
-  width: 60%;
+  width: 100%;
   display: grid;
   gap: 0 30px;
 }
-
 .cover {
   width: 100%;
   background: rgba(0, 0, 0, 0.5);
@@ -1363,8 +1437,8 @@ p > span,
 
 @media (max-width: 968px) {
   .product_image {
-    width: 220px;
-    height: 220px;
+    width: 100% !important;
+    height: 100% !important;
   }
   .product_name span {
     font-size: 14px;
@@ -1428,4 +1502,9 @@ input[type="number"]::-webkit-outer-spin-button {
 
 .logo-wrap p {
   margin-top: 7px;
+}
+
+.cart_wrap {
+  margin: 0 auto;
+  width: 95%;
 }
