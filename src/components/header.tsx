@@ -10,7 +10,7 @@ type detailProps = {
 };
 
 const Header = ({ productConnect, products }: detailProps) => {
-  const { cartData } = useMyContext();
+  const { cartData, navigate } = useMyContext();
   const cart = cartData.cart;
   const [text, setText] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -19,8 +19,10 @@ const Header = ({ productConnect, products }: detailProps) => {
     const result = products.filter((item) => item.name.includes(text));
     if (typeof e === "object" && e.key === "Enter" && text !== "") {
       productConnect(result);
+      navigate("/");
     } else if (typeof e === "string" && e === "click") {
       productConnect(result);
+      navigate("/");
     }
   }
 
