@@ -20,7 +20,7 @@ TypeScript,React,React-Router-dom,ContextAPI,SCSS
 
 ## Preview
 
-  <img src="./public/img/preview.jpg" alt="" />
+  <img src="./public/images/preview.jpg" alt="" />
 
 ### 📌 주요기능
 
