@@ -305,6 +305,10 @@ button {
 @media all and (max-width: 960px) {
   .totals {
     grid-template-columns: repeat(4, 1fr);
+    padding: 0 15px;
+  }
+  .order-pay img {
+    width: 100%;
   }
 }
 
@@ -480,8 +484,8 @@ button {
   }
 
   .cart_product_list input[type="checkbox"] {
-    top: 30%;
-    left: 10%;
+    top: 15px;
+    left: 12px;
     position: absolute;
   }
 
@@ -509,7 +513,7 @@ button {
   .sale .cart_product_sale,
   .delivery .cart_product_delivery,
   .payment .cart_prouct_payment {
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .total_price .cart_product_price,
