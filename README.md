@@ -4,6 +4,9 @@
 
 개인 공부
 <br />
+<br />
+🖥️ using project : git clone / npm install
+<br />
 
 ## 📃 using lang
 
