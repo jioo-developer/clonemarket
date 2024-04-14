@@ -53,6 +53,7 @@ const TotalCart = ({
       setInitial(0);
     }
   }, [buyitem, checkLists, cart, total, totalConnect, randomNum]);
+
   return (
     <div className="totals">
       <div className="total_price">
