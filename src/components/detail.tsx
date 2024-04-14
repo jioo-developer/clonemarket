@@ -4,7 +4,7 @@ import { calculator, cartAdd } from "../module/reducer.ts";
 import Recommend from "./recommend.tsx";
 import { productType } from "../interfaceModule";
 import { useParams } from "react-router-dom";
-import convertPrice from "../module/convertPrice.ts";
+import { convertPrice } from "../module/exportFunction.ts";
 
 const Detail = ({ products }: { products: productType[] }) => {
   const { dispatch, navigate, cartData } = useMyContext();
@@ -79,12 +79,6 @@ const Detail = ({ products }: { products: productType[] }) => {
     dispatch(calculator(splice));
   };
 
-  const cartFunc = () => {
-    const num = { ...items };
-    num.quantity = num.quantity + count;
-    dispatch(cartAdd(num));
-  };
-
   const handleCart = (id: number) => {
     if (items.name !== "" && !isNaN(count)) {
       //items에 item이 있을 때
@@ -103,6 +97,12 @@ const Detail = ({ products }: { products: productType[] }) => {
         }
       }
     }
+  };
+
+  const cartFunc = () => {
+    const num = { ...items };
+    num.quantity = num.quantity + count;
+    dispatch(cartAdd(num));
   };
 
   return (

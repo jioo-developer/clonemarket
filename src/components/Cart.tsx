@@ -16,6 +16,10 @@ const Cart = () => {
   const { cartData, dispatch } = useMyContext();
   const cart = cartData.cart;
 
+  const quantityConnect = (target: number, value: number) => {
+    handleQuantity(target, value);
+  };
+
   const handleQuantity = (id: number, quantity: number) => {
     const found = cart.filter((el) => el.id === id)[0];
     const idx = cart.indexOf(found);
@@ -29,16 +33,6 @@ const Cart = () => {
     dispatch(removeItem(cart.filter((cart) => cart.id !== productId)));
   };
 
-  const handlerCheckList = (checked: boolean, productId: number) => {
-    if (checked) {
-      setCheckLists([...checkLists, productId]);
-    } else {
-      const result = checkLists.filter((item) => item !== productId);
-      setCheckLists(result);
-      //filter 안의 item parameter와 id가 같지 않은 것만 남긴다 = 같은 거 삭제
-    }
-  };
-
   const AllChecked = (e: ChangeEvent) => {
     const target = e.target as HTMLInputElement;
     if (target.checked) {
@@ -47,6 +41,16 @@ const Cart = () => {
       setCheckLists([...clearItem]);
     } else {
       setCheckLists([]);
+    }
+  };
+
+  const handlerCheckList = (checked: boolean, productId: number) => {
+    if (checked) {
+      setCheckLists([...checkLists, productId]);
+    } else {
+      const result = checkLists.filter((item) => item !== productId);
+      setCheckLists(result);
+      //filter 안의 item parameter와 id가 같지 않은 것만 남긴다 = 같은 거 삭제
     }
   };
 
@@ -69,10 +73,6 @@ const Cart = () => {
     setBill(value);
   };
 
-  const quantityConnect = (target: number, value: number) => {
-    handleQuantity(target, value);
-  };
-
   const buyitem = useCallback(() => {
     if (cart.length > 0) {
       return checkLists
@@ -82,10 +82,6 @@ const Cart = () => {
       return [];
     }
   }, [cart, checkLists]);
-
-  const isAllChecked =
-    cart.length === checkLists.length && checkLists.length !== 0;
-  //전체를 체크 해야되니 :  장바구니에 저장된 데이터의 값과 체크된 갯수가 같으면서 체크리스트의 갯수가 0개가 아닐때
 
   useEffect(() => {
     const loadCoupon = localStorage.getItem("couponNum");
@@ -106,6 +102,10 @@ const Cart = () => {
   useEffect(() => {
     buyitem();
   }, [checkLists, buyitem]);
+
+  const isAllChecked =
+    cart.length === checkLists.length && checkLists.length !== 0;
+  //전체를 체크 해야되니 :  장바구니에 저장된 데이터의 값과 체크된 갯수가 같으면서 체크리스트의 갯수가 0개가 아닐때
 
   return (
     <div className="cart_wrap">

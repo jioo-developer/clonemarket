@@ -1,17 +1,8 @@
 import React from "react";
+import ProductComponent from "../module/ProductComponent.tsx";
 import { productType } from "../interfaceModule";
-import { useMyContext } from "../module/MyContext.tsx";
 
-type recentlyProps = {
-  recently: productType[];
-};
-
-const Recently = ({ recently }: recentlyProps) => {
-  const { navigate, price } = useMyContext();
-  function detailDirect(id: number) {
-    navigate(`/product/${id}`);
-  }
-
+const Recently = ({ recently }: { recently: productType[] }) => {
   return (
     <div className="recently-wrap">
       {recently.length > 0 ? <p>최근 본 상품</p> : null}
@@ -23,33 +14,7 @@ const Recently = ({ recently }: recentlyProps) => {
             : { gridTemplateColumns: `repeat(${5},1fr)` }
         }
       >
-        {recently.length > 0
-          ? recently.map((product) => {
-              return (
-                <div
-                  className="product"
-                  key={product.id}
-                  onClick={() => detailDirect(product.id)}
-                >
-                  <div className="product_image">
-                    <img src={product.image} alt="product" />
-                  </div>
-                  <div className="store">
-                    <span>{product.provider}</span>
-                  </div>
-
-                  <div className="product_name">
-                    <span>{product.name}</span>
-                  </div>
-
-                  <div className="product_price">
-                    <span className="price">{price(product.price)}</span>
-                    <span className="unit">원</span>
-                  </div>
-                </div>
-              );
-            })
-          : null}
+        <ProductComponent dataArr={recently} />
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ import React, {
 import { useNavigate } from "react-router-dom";
 import reducer, { initialState } from "./reducer.ts";
 import { Action, cartSelect } from "../interfaceModule";
-import convertPrice from "./convertPrice.ts";
+import { convertPrice } from "./exportFunction.ts";
 
 type MyContextProps = {
   navigate: (params: string, state?: any) => void;
